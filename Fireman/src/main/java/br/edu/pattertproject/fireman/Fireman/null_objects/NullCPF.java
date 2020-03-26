@@ -1,6 +1,6 @@
 package br.edu.pattertproject.fireman.Fireman.null_objects;
 
-import br.edu.pattertproject.fireman.Fireman.bridge.Documento;
+import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.Documento;
 
 public class NullCPF  extends Documento{
 	
