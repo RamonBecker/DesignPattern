@@ -9,6 +9,7 @@ import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.ValidadorC
 import br.edu.pattertproject.fireman.Fireman.null_objects.NullEmpresa;
 import br.edu.pattertproject.fireman.Fireman.null_objects.NullTipoTaxa;
 import br.edu.pattertproject.fireman.Fireman.state_pattern.TaxaQuitada;
+import br.edu.pattertproject.fireman.Fireman.strategy_pattern.StrategyTaxa;
 
 public class DaoEmpresa {
 
@@ -24,28 +25,30 @@ public class DaoEmpresa {
 
 		String cnpj, nomeFantasia, razaoSocial, ocupacao;
 
-		System.out.println("Digite o CNPJ:");
+		System.out.print("Digite o CNPJ:");
 
 		cnpj = scanner.next();
 
 		Documento documento = new Documento(cnpj, new ValidadorCNPJ());
 
-		System.out.println("Digite o nome fantansia:");
+		System.out.print("Digite o nome fantansia:");
 
-		nomeFantasia = scanner.nextLine();
+		nomeFantasia = scanner.next();
 
-		System.out.println("Digite a razao social:");
+		System.out.print("Digite a razao social:");
 
-		razaoSocial = scanner.nextLine();
+		razaoSocial = scanner.next();
 
-		System.out.println("Digite a ocupação da empresa");
+		System.out.print("Digite a ocupação da empresa");
 
-		ocupacao = scanner.nextLine();
+		ocupacao = scanner.next();
 
 		Empresa empresa = new Empresa(documento, nomeFantasia, razaoSocial, ocupacao);
 
 		System.out.println("Empresa cadastrada com sucesso !");
 		System.out.println(empresa);
+
+		System.out.println("\n\n");
 
 		return empresa;
 	}
@@ -55,16 +58,18 @@ public class DaoEmpresa {
 		System.out.println(op);
 
 		for (int i = 0; i < object.length; i++) {
-			System.out.println(i + " " + object[i]);
+			System.out.println("Indice: " + i +") "+ " " + object[i]);
 
 		}
 
+		System.out.print("Selecione o tipo de taxa pelo indice:");
 		int indice = scanner.nextInt();
 
 		if (indice < object.length) {
 			return indice;
 		}
 		throw new NullTipoTaxa("Não foi possível escolher o tipo de taxa");
+
 	}
 
 	public Empresa pagarTaxa(Empresa empresa) {
@@ -77,6 +82,8 @@ public class DaoEmpresa {
 		} else {
 			System.out.println("Quitando taxa");
 			empresa.setTaxa(0);
+			System.out.println(empresa);
+			System.out.println("Taxa quitada");
 		}
 
 		return empresa;
@@ -93,10 +100,10 @@ public class DaoEmpresa {
 
 		System.out.println("---------------- Listando as empresas ---------------- \n");
 		for (int i = 0; i < listEmpresa.size(); i++) {
-			System.out.println(i + ")" + listEmpresa.get(i));
+			System.out.println("Indice: " + i + ") " + listEmpresa.get(i));
 		}
 
-		System.out.println("Selecione a empresa:");
+		System.out.println("Selecione a empresa pelo indice:");
 		int indice = scanner.nextInt();
 
 		if (indice < listEmpresa.size()) {
@@ -108,6 +115,11 @@ public class DaoEmpresa {
 
 	public void listarEmpresa() {
 		System.out.println("Listando empresas");
+
+		if (listEmpresa.isEmpty()) {
+			new NullEmpresa();
+			return;
+		}
 
 		for (Empresa empresa : listEmpresa) {
 			System.out.println(empresa);

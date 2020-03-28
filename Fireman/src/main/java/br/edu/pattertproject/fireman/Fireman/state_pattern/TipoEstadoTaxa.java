@@ -16,5 +16,8 @@ public enum TipoEstadoTaxa {
 	};
 	
 	public abstract InterfaceEstado obterEstadoTaxa();
+	
+	
+	
 
 }

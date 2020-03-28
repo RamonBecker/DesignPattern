@@ -15,4 +15,11 @@ public class TaxaPendente implements InterfaceEstado {
 
 		return new TaxaQuitada();
 	}
+
+	@Override
+	public String toString() {
+		return "Verificar se possui taxa pendente";
+	}
+	
+	
 }

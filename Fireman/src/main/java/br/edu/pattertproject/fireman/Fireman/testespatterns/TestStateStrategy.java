@@ -63,7 +63,7 @@ public class TestStateStrategy {
 					if (!(empresa instanceof NullEmpresa)) {
 
 						indice = daoEmpresa.tipoTaxaEscolhido(scanner, TipoEstadoTaxa.values(),
-								"Verificando estado de pagamento com State");
+								"Verificando se a empresa ja realizou o pagamento com Padrao State");
 						empresa.setInterfaceEstado(TipoEstadoTaxa.values()[indice].obterEstadoTaxa());
 						empresa.solicitarVistoria();
 					}
