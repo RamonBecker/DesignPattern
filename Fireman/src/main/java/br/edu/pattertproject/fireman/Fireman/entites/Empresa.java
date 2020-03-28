@@ -12,7 +12,7 @@ public class Empresa extends PessoaJuridica {
 	private InterfaceEstado interfaceEstado;
 	private Vistoria vistoria;
 	private String ocupacao;
-	
+
 	public Empresa() {
 	}
 
@@ -47,6 +47,11 @@ public class Empresa extends PessoaJuridica {
 	}
 
 	public void gerarTaxa(double valor) {
+
+		if (valor > 0) {
+			this.taxa += strategyTaxa.calcularTaxa(valor);
+			return;
+		}
 		this.taxa = strategyTaxa.calcularTaxa(valor);
 	}
 

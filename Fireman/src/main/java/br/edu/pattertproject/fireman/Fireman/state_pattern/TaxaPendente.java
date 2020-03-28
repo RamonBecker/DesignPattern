@@ -13,13 +13,7 @@ public class TaxaPendente implements InterfaceEstado {
 			return this;
 		}
 
-		return new TaxaQuitada();
+		return new TaxaQuitada().processaPagamento(empresa);
 	}
 
-	@Override
-	public String toString() {
-		return "Verificar se possui taxa pendente";
-	}
-	
-	
 }

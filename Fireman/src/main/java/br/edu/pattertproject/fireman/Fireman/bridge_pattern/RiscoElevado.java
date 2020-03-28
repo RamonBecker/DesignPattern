@@ -22,7 +22,7 @@ public class RiscoElevado extends Risco {
 				}
 			}
 		}
-		return new NullRiscoElevado();
+		return new RiscoLeve().processaClassificacaoRisco(riscosRecebido);
 
 	}
 

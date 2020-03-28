@@ -16,7 +16,7 @@ public class RiscoLeve extends Risco {
 			return this;
 		}
 
-		return new NullRiscoLeve();
+		return new RiscoMedio().processaClassificacaoRisco(null);
 	}
 
 	@Override

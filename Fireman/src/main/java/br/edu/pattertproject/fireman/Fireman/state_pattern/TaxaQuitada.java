@@ -12,13 +12,7 @@ public class TaxaQuitada implements InterfaceEstado {
 			System.out.println(empresa);
 			return this;
 		}
-		return new TaxaPendente();
+		return new TaxaPendente().processaPagamento(empresa);
 	}
 
-	@Override
-	public String toString() {
-		return "Verificar se a taxa ja esta quitada para realizar a solicitação de serviço";
-	}
-	
-	
 }

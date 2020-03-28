@@ -16,7 +16,7 @@ public class TestStateStrategy {
 
 		try (Scanner scanner = new Scanner(System.in)) {
 			while (true) {
-				
+
 				// Observações:
 				// 2 - Usando o strategy para gerar a taxa
 				// 3 - Usando state para usar solicitação de serviço, caso a empresa não tenho
@@ -32,7 +32,7 @@ public class TestStateStrategy {
 				System.out.println("4) Solicitação de serviço");
 				System.out.println("5) Pagar taxa");
 				System.out.println("6) Encerrar");
-				
+
 				int leitura = scanner.nextInt();
 
 				switch (leitura) {
@@ -53,6 +53,7 @@ public class TestStateStrategy {
 						indice = daoEmpresa.tipoTaxaEscolhido(scanner, TipoTaxa.values(), "Gerando taxa com Strategy");
 						empresa.setStrategyTaxa(TipoTaxa.values()[indice].obterTipoTaxa());
 						empresa.gerarTaxa(100);
+						System.out.println(empresa);
 					}
 
 					break;
@@ -78,6 +79,10 @@ public class TestStateStrategy {
 						daoEmpresa.pagarTaxa(empresa);
 					}
 
+					break;
+				}
+
+				if (leitura == 6) {
 					break;
 				}
 			}

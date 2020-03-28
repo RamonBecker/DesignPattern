@@ -9,8 +9,4 @@ public class CPF extends Documento {
 		super(documento);
 	}
 
-	public CPF(String documento, IntefaceDocumento interfaceDocumento) {
-		super(documento, interfaceDocumento);
-	}
-
 }

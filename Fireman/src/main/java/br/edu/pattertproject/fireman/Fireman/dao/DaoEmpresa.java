@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 import br.edu.pattertproject.fireman.Fireman.entites.Empresa;
 import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.Documento;
-import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.ValidadorCNPJ;
 import br.edu.pattertproject.fireman.Fireman.null_objects.NullEmpresa;
 import br.edu.pattertproject.fireman.Fireman.null_objects.NullTipoTaxa;
 import br.edu.pattertproject.fireman.Fireman.state_pattern.TaxaQuitada;
-import br.edu.pattertproject.fireman.Fireman.strategy_pattern.StrategyTaxa;
 
 public class DaoEmpresa {
 
@@ -29,7 +27,7 @@ public class DaoEmpresa {
 
 		cnpj = scanner.next();
 
-		Documento documento = new Documento(cnpj, new ValidadorCNPJ());
+		Documento documento = new Documento(cnpj);
 
 		System.out.print("Digite o nome fantansia:");
 
@@ -39,7 +37,7 @@ public class DaoEmpresa {
 
 		razaoSocial = scanner.next();
 
-		System.out.print("Digite a ocupação da empresa");
+		System.out.print("Digite a ocupação da empresa:");
 
 		ocupacao = scanner.next();
 
@@ -58,7 +56,7 @@ public class DaoEmpresa {
 		System.out.println(op);
 
 		for (int i = 0; i < object.length; i++) {
-			System.out.println("Indice: " + i +") "+ " " + object[i]);
+			System.out.println("Indice: " + i + ") " + " " + object[i]);
 
 		}
 
@@ -125,6 +123,24 @@ public class DaoEmpresa {
 			System.out.println(empresa);
 			System.out.println("\n");
 		}
+	}
+
+	public void updateEmpresa(Empresa empresa) {
+
+		int i = 0;
+		int auxPosicao = 0;
+
+		for (Empresa auxEmpresa : listEmpresa) {
+			if (auxEmpresa.getDocumento().getNumeroDocumento().equals(empresa.getDocumento().getNumeroDocumento())) {
+				auxPosicao = i;
+				break;
+			}
+			i++;
+		}
+
+		listEmpresa.remove(auxPosicao);
+		listEmpresa.add(empresa);
+
 	}
 
 	public List<Empresa> getListEmpresa() {

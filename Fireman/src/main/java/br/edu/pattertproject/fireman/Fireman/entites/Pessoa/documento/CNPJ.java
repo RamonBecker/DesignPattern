@@ -9,8 +9,4 @@ public class CNPJ extends Documento {
 		super(documento);
 	}
 
-	public CNPJ(String documento, IntefaceDocumento interfaceDocumento) {
-		super(documento, interfaceDocumento);
-	}
-
 }
