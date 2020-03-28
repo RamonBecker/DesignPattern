@@ -5,12 +5,14 @@ import br.edu.pattertproject.fireman.Fireman.entites.Empresa;
 public class TaxaPendente implements InterfaceEstado {
 
 	@Override
-	public boolean processaPagamento(Empresa empresa) {
+	public InterfaceEstado processaPagamento(Empresa empresa) {
 		if (empresa.getTaxa() > 0) {
-			return false;
+			System.out.println("A empresa não pode solicitar nova vistoria, pois esta com pendencia em pagamento:"
+					+ empresa.getTaxa() + " reais");
+
+			return this;
 		}
 
-		return true;
+		return new TaxaQuitada();
 	}
-
 }

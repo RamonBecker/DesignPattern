@@ -5,11 +5,14 @@ import br.edu.pattertproject.fireman.Fireman.entites.Empresa;
 public class TaxaQuitada implements InterfaceEstado {
 
 	@Override
-	public boolean processaPagamento(Empresa empresa) {
+	public InterfaceEstado processaPagamento(Empresa empresa) {
 		if (empresa.getTaxa() == 0) {
-			return true;
+			System.out.println("O pagamento esta quitado");
+			System.out.println("A empresa esta liberada para solicitar uma nova vistoria");
+			System.out.println(empresa);
+			return this;
 		}
-		return false;
+		return new TaxaPendente();
 	}
 
 }

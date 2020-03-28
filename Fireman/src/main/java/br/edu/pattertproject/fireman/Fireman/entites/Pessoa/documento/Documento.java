@@ -2,27 +2,27 @@ package br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento;
 
 public class Documento {
 
-	private String documento;
+	private String numero_documento;
 	private IntefaceDocumento interfaceDocumento;
 
 	public Documento() {
 	}
 
 	public Documento(String documento) {
-		this.documento = documento;
+		this.numero_documento = documento;
 	}
 
 	public Documento(String documento, IntefaceDocumento interfaceDocumento) {
-		this.documento = documento;
+		this.numero_documento = documento;
 		this.interfaceDocumento = interfaceDocumento;
 	}
 
 	public Documento validarDocumento() {
-		return interfaceDocumento.validarDocumento(documento);
+		return interfaceDocumento.validarDocumento(numero_documento);
 	}
 
-	public String getDocumento() {
-		return documento;
+	public String getNumeroDocumento() {
+		return numero_documento;
 	}
 
 	public IntefaceDocumento getInterfaceDocumento() {
@@ -34,12 +34,12 @@ public class Documento {
 	}
 
 	public void setDocumento(String documento) {
-		this.documento = documento;
+		this.numero_documento = documento;
 	}
 
 	@Override
 	public String toString() {
-		return "Documento [documento=" + documento + ", interfaceDocumento=" + interfaceDocumento + "]";
+		return "Documento: " + numero_documento;
 	}
 
 }

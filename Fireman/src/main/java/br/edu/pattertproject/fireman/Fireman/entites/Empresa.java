@@ -1,9 +1,9 @@
 package br.edu.pattertproject.fireman.Fireman.entites;
 
 import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.PessoaJuridica;
+import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.Documento;
 import br.edu.pattertproject.fireman.Fireman.state_pattern.InterfaceEstado;
-import br.edu.pattertproject.fireman.Fireman.state_pattern.strategy_pattern.StrategyTaxa;
-import br.edu.pattertproject.fireman.Fireman.state_pattern.strategy_pattern.TaxaAnual;
+import br.edu.pattertproject.fireman.Fireman.strategy_pattern.StrategyTaxa;
 
 public class Empresa extends PessoaJuridica {
 
@@ -12,24 +12,17 @@ public class Empresa extends PessoaJuridica {
 	private InterfaceEstado interfaceEstado;
 	private Vistoria vistoria;
 	private String ocupacao;
+	
+	public Empresa() {
+	}
 
-	public Empresa(String nome, String razaoSocial) {
-		super(nome, razaoSocial);
-
-		// Utilizando o strategy
-		setStrategyTaxa(new TaxaAnual());
-		gerarTaxa(100);
-
+	public Empresa(Documento documento, String nomeFantasia, String razaoSocial, String ocupacao) {
+		super(documento, nomeFantasia, razaoSocial);
+		this.ocupacao = ocupacao;
 	}
 
 	public void solicitarVistoria() {
-		if (interfaceEstado.processaPagamento(this)) {
-			System.out.println("O pagamento esta quitado");
-			System.out.println("A empresa esta liberada para solicitar uma nova vistoria");
-		} else {
-			System.out.println("A empresa não pode solicitar nova vistoria, pois esta com pendencia em pagamento: 			"+this.taxa+ " reais");
-
-		}
+		interfaceEstado.processaPagamento(this);
 	}
 
 	public StrategyTaxa getStrategyTaxa() {
@@ -75,6 +68,13 @@ public class Empresa extends PessoaJuridica {
 
 	public void setVistoria(Vistoria vistoria) {
 		this.vistoria = vistoria;
+	}
+
+	@Override
+	public String toString() {
+		return "Empresa : Nome fantasia:" + getNomeFantasia() + ", CNPJ:" + getDocumento().getNumeroDocumento()
+				+ ", Razão Social:" + getRazaoSocial() + ", Taxa:" + getTaxa() + ", Ocupação comercial:"
+				+ getOcupacao();
 	}
 
 }

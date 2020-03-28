@@ -1,17 +1,18 @@
 package br.edu.pattertproject.fireman.Fireman.entites.Pessoa;
 
+import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.Documento;
 
 public class Usuario extends PessoaFisica {
 
 	private String nomeUsuario;
 	private String senha;
 
-	public Usuario(String nome, String sobrenome) {
-		super(nome, sobrenome);
+	public Usuario(Documento documento) {
+		super(documento);
 	}
 
-	public Usuario(String nome, String nomeUsuario, String senha) {
-		super(nome);
+	public Usuario(String nomeUsuario, String senha) {
+		super(null);
 		this.nomeUsuario = nomeUsuario;
 		this.senha = senha;
 	}
@@ -34,7 +35,7 @@ public class Usuario extends PessoaFisica {
 
 	@Override
 	public String toString() {
-		return "Usuario:" + nomeUsuario;
+		return "Usuario: nome do usuario:" + nomeUsuario + " - senha:" + senha + "";
 	}
 
 }

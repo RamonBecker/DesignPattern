@@ -3,7 +3,7 @@ package br.edu.pattertproject.fireman.Fireman.bridge_pattern;
 import java.util.Scanner;
 
 import br.edu.pattertproject.fireman.Fireman.bridge_pattern.edificacao.VistoriaParcial;
-import br.edu.pattertproject.fireman.Fireman.entites.DaoVistoria;
+import br.edu.pattertproject.fireman.Fireman.dao.DaoVistoria;
 import br.edu.pattertproject.fireman.Fireman.entites.Vistoria;
 
 public class TesteMainBridge {

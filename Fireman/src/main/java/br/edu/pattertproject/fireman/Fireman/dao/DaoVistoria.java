@@ -1,8 +1,9 @@
-package br.edu.pattertproject.fireman.Fireman.entites;
+package br.edu.pattertproject.fireman.Fireman.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class DaoVistoria {
 
@@ -61,7 +62,7 @@ public class DaoVistoria {
 	}
 	
 	public void solicitarVistoria() {
-		Empresa empresa = new Empresa("Empresa", "Empresa tal tal");
+	///	Empresa empresa = new Empresa("Empresa", "Empresa tal tal");
 		
 		
 	}

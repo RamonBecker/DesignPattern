@@ -1,4 +1,4 @@
-package br.edu.pattertproject.fireman.Fireman.state_pattern.strategy_pattern;
+package br.edu.pattertproject.fireman.Fireman.strategy_pattern;
 
 public enum TipoTaxa {
 	ANUAL {
@@ -8,7 +8,7 @@ public enum TipoTaxa {
 		}
 	},
 
-	HABITESE {
+	IMPOSTO {
 		@Override
 		public StrategyTaxa obterTipoTaxa() {
 			return new TaxaImposto();
@@ -16,5 +16,7 @@ public enum TipoTaxa {
 	};
 
 	public abstract StrategyTaxa obterTipoTaxa();
+	
+	
 
 }

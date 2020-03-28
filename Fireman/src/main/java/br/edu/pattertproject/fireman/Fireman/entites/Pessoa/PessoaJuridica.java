@@ -1,17 +1,19 @@
 package br.edu.pattertproject.fireman.Fireman.entites.Pessoa;
 
+import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.Documento;
+
 public abstract class PessoaJuridica extends Pessoa {
 
 	private String razaoSocial;
 	private String nomeFantasia;
-
-	public PessoaJuridica(String nome) {
-		super(nome);
+	
+	public PessoaJuridica() {
 	}
 
-	public PessoaJuridica(String nome, String razaoSocial) {
-		super(nome);
+	public PessoaJuridica(Documento documento, String razaoSocial, String nomeFantasia) {
+		super(documento);
 		this.razaoSocial = razaoSocial;
+		this.nomeFantasia = nomeFantasia;
 	}
 
 	public String getRazaoSocial() {
@@ -32,7 +34,7 @@ public abstract class PessoaJuridica extends Pessoa {
 
 	@Override
 	public String toString() {
-		return "PessoaJuridica [razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia + "]";
+		return "Pessoa Juridica: razaoSocial:" + razaoSocial + ", nomeFantasia:" + nomeFantasia + "\n";
 	}
 
 }
