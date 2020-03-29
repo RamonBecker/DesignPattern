@@ -3,6 +3,8 @@ package br.edu.pattertproject.fireman.Fireman.dao;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import br.edu.pattertproject.fireman.Fireman.bridge_pattern.BridgeClassificacaoRisco;
 import br.edu.pattertproject.fireman.Fireman.bridge_pattern.Risco;
 import br.edu.pattertproject.fireman.Fireman.bridge_pattern.RiscoElevado;
 import br.edu.pattertproject.fireman.Fireman.bridge_pattern.RiscoLeve;
@@ -29,9 +31,11 @@ public class DaoVistoria {
 
 	public void gerarClassificacao(Scanner scanner, DaoEmpresa daoEmpresa) {
 
-		Vistoria vistoria = tipoVistoriaEscolhido(scanner, "Tipo de vistoria a ser realizado:");
+		Vistoria vistoria = tipoVistoriaEscolhido(scanner, "");
 
 		String retorno = "";
+		
+		BridgeClassificacaoRisco classificacao;
 
 		if (vistoria instanceof VistoriaHabitese) {
 			Edificacao edificacao = buscarEdificacao(scanner);
@@ -40,8 +44,10 @@ public class DaoVistoria {
 
 			retorno = questionarioGerarClassificacaoRisco(scanner);
 
-			edificacao.getVistoria().processaClassificacaoRisco(retorno);
+			classificacao = edificacao.getVistoria().processaClassificacaoRisco(retorno);
 
+			edificacao.getVistoria().setBridgeClassificacaoRisco(classificacao);
+			
 			updateEdificacao(edificacao);
 
 		}
@@ -59,14 +65,17 @@ public class DaoVistoria {
 			empresa.setVistoria(vistoriaParcial);
 
 			empresa.getVistoria().setBridgeClassificacaoRisco(new RiscoElevado());
-
+			
+			
+			classificacao =	empresa.getVistoria().processaClassificacaoRisco(retorno);
+			
 			retorno = questionarioGerarClassificacaoRisco(scanner);
-
-			empresa.getVistoria().processaClassificacaoRisco(retorno);
-
-			daoEmpresa.updateEmpresa(empresa);
-
+			
+			System.out.println("retorno:"+retorno);
+			empresa.getVistoria().setBridgeClassificacaoRisco(classificacao);
+			System.out.println("classificacao:"+empresa.getVistoria().getBridgeClassificacaoRisco2());
 			System.out.println(empresa);
+			daoEmpresa.updateEmpresa(empresa);
 		}
 
 	}
@@ -180,7 +189,7 @@ public class DaoVistoria {
 		System.out.println(op);
 
 		for (int i = 0; i < TipoVistoria.values().length; i++) {
-			System.out.println("Indice:" + i + ")" + TipoVistoria.values()[i]);
+			System.out.println("Indice:" + i + ") " + TipoVistoria.values()[i]);
 		}
 
 		System.out.println("Selecione o tipo de vistoria pelo indice:");

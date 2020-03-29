@@ -12,9 +12,11 @@ public class RiscoElevado extends Risco {
 
 	@Override
 	public BridgeClassificacaoRisco processaClassificacaoRisco(String riscosRecebido) {
+		
 		for (int i = 0; i < getFatoresRiscos().size(); i++) {
 
-			if (getFatoresRiscos().get(i).contains(riscosRecebido)) {
+			if (getFatoresRiscos().get(i).equals(riscosRecebido)) {
+				System.out.println("Entrou aquis");
 				return this;
 			}
 

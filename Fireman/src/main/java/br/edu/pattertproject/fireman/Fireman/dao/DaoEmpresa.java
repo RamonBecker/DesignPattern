@@ -89,7 +89,7 @@ public class DaoEmpresa {
 	}
 
 	public Empresa buscarEmpresa(Scanner scanner) {
-
+		System.out.println("\n---------------\n");
 		System.out.println("Buscando empresas ......");
 
 		if (listEmpresa.isEmpty()) {
@@ -107,6 +107,7 @@ public class DaoEmpresa {
 		if (indice < listEmpresa.size()) {
 			return listEmpresa.get(indice);
 		}
+		System.out.println("\n---------------\n");
 
 		return new NullEmpresa();
 	}

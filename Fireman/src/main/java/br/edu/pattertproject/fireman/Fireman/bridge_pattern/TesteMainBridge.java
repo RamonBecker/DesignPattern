@@ -9,6 +9,8 @@ import br.edu.pattertproject.fireman.Fireman.entites.Empresa;
 import br.edu.pattertproject.fireman.Fireman.entites.Vistoria;
 import br.edu.pattertproject.fireman.Fireman.null_objects.NullEmpresa;
 import br.edu.pattertproject.fireman.Fireman.null_objects.NullTipoVistoria;
+import br.edu.pattertproject.fireman.Fireman.state_pattern.TaxaQuitada;
+import br.edu.pattertproject.fireman.Fireman.state_pattern.TipoEstadoTaxa;
 
 public class TesteMainBridge {
 
@@ -27,6 +29,7 @@ public class TesteMainBridge {
 				System.out.println("2) Solicitar vistoria");
 				System.out.println("3) Gerar classificação de risco para vistoria:");
 				System.out.println("4) Listar vistorias parcial e habitese");
+				System.out.println("5) Sair");
 				System.out.print("Selecione a opção:");
 
 				int leitura = scanner.nextInt();
@@ -46,16 +49,26 @@ public class TesteMainBridge {
 
 					if (!(empresa instanceof NullEmpresa)) {
 
-						vistoria = daoVistoria.tipoVistoriaEscolhido(scanner, "Tipo de vistoria a ser realizado:");
+						int indice = daoEmpresa.tipoTaxaEscolhido(scanner, TipoEstadoTaxa.values(),
+								"Verificando se a empresa ja realizou o pagamento com Padrao State");
+						empresa.setInterfaceEstado(TipoEstadoTaxa.values()[indice].obterEstadoTaxa());
+						empresa.solicitarVistoria();
 
-						if (!(vistoria instanceof NullTipoVistoria)) {
+						if (empresa.getEstadoPagamento() instanceof TaxaQuitada) {
 
-							if (vistoria instanceof VistoriaHabitese) {
-								daoVistoria.createEdificacao(scanner, empresa, vistoria);
+							vistoria = daoVistoria.tipoVistoriaEscolhido(scanner, "");
+
+							if (!(vistoria instanceof NullTipoVistoria)) {
+
+								if (vistoria instanceof VistoriaHabitese) {
+									daoVistoria.createEdificacao(scanner, empresa, vistoria);
+								}
+
+								empresa.setVistoria(vistoria);
+								System.out.println("------------------\n");
+								System.out.println("Setando vistoria na empresa......\n\n");
+								daoEmpresa.updateEmpresa(empresa);
 							}
-
-							empresa.setVistoria(vistoria);
-							daoEmpresa.updateEmpresa(empresa);
 						}
 
 					}
@@ -70,8 +83,8 @@ public class TesteMainBridge {
 
 				case 4:
 
-					daoVistoria.listarEdificacoes();
-					
+					daoVistoria.listarVistoria(scanner, daoEmpresa);
+
 					break;
 
 				}

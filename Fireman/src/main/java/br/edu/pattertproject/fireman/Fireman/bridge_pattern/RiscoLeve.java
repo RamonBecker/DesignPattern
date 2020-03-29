@@ -10,11 +10,11 @@ public class RiscoLeve extends Risco {
 
 	@Override
 	public BridgeClassificacaoRisco processaClassificacaoRisco(String riscosRecebidos) {
-		if (getFatoresRiscos().get(0).contains(riscosRecebidos)) {
+		if (getFatoresRiscos().get(0).equals(riscosRecebidos)) {
 			return this;
 		}
 
-		return new RiscoMedio().processaClassificacaoRisco(null);
+		return new RiscoMedio().processaClassificacaoRisco(riscosRecebidos);
 	}
 
 	@Override

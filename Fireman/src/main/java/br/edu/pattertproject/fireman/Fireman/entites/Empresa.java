@@ -10,6 +10,7 @@ public class Empresa extends PessoaJuridica {
 	private double taxa;
 	private StrategyTaxa strategyTaxa;
 	private InterfaceEstado interfaceEstado;
+	private InterfaceEstado estadoPagamento;
 	private Vistoria vistoria;
 	private String ocupacao;
 
@@ -22,7 +23,7 @@ public class Empresa extends PessoaJuridica {
 	}
 
 	public void solicitarVistoria() {
-		interfaceEstado.processaPagamento(this);
+		this.estadoPagamento = interfaceEstado.processaPagamento(this);
 	}
 
 	public StrategyTaxa getStrategyTaxa() {
@@ -75,11 +76,14 @@ public class Empresa extends PessoaJuridica {
 		this.vistoria = vistoria;
 	}
 
+	public InterfaceEstado getEstadoPagamento() {
+		return estadoPagamento;
+	}
+
 	@Override
 	public String toString() {
 		return "Empresa : Nome fantasia:" + getNomeFantasia() + ", CNPJ:" + getDocumento().getNumeroDocumento()
-				+ ", Razão Social:" + getRazaoSocial() + ", Taxa:" + getTaxa() + ", Ocupação comercial:"
-				+ getOcupacao()+" "+
-				"Vistoria:"+vistoria+"\n";
+				+ ", Razão Social:" + getRazaoSocial() + ", Taxa:" + getTaxa() + ", Ocupação comercial:" + getOcupacao()
+				+ " " + "Vistoria:" + vistoria + "\n";
 	}
 }

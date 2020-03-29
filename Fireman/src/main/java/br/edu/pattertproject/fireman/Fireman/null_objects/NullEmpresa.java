@@ -6,6 +6,7 @@ public class NullEmpresa extends Empresa {
 
 	public NullEmpresa() {
 		System.out.println("Não foi possível buscar a empresa");
+		System.out.println("\n---------------\n");
 	}
 
 }
