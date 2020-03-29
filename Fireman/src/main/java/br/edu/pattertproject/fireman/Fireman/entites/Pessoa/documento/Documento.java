@@ -1,6 +1,6 @@
 package br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento;
 
-public class Documento {
+public abstract class Documento {
 
 	private String numero_documento;
 
@@ -11,15 +11,15 @@ public class Documento {
 		this.numero_documento = documento;
 	}
 
-
 	public String getNumeroDocumento() {
 		return numero_documento;
 	}
 
-
 	public void setDocumento(String documento) {
 		this.numero_documento = documento;
 	}
+
+	public abstract Documento validarDocumento();
 
 	@Override
 	public String toString() {

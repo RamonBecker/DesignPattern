@@ -73,7 +73,7 @@ public class DaoVistoria {
 			
 			System.out.println("retorno:"+retorno);
 			empresa.getVistoria().setBridgeClassificacaoRisco(classificacao);
-			System.out.println("classificacao:"+empresa.getVistoria().getBridgeClassificacaoRisco2());
+			System.out.println("classificacao:"+empresa.getVistoria().getBridgeClassificacaoRisco());
 			System.out.println(empresa);
 			daoEmpresa.updateEmpresa(empresa);
 		}

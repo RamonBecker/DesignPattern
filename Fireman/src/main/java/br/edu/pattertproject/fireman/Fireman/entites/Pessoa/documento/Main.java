@@ -2,34 +2,28 @@ package br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento;
 
 import java.util.ArrayList;
 
-public class CNPJ extends Documento {
-
-	public CNPJ() {
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		System.out.println(validarCNPJ("26335846000176"));
+		
 	}
+	
+	public static boolean validarCNPJ(String documento) {
 
-	public CNPJ(String documento) {
-
-		super(documento);
-		validarDocumento();
-	}
-
-	@Override
-	public Documento validarDocumento() {
-
-		boolean validaNumero = getNumeroDocumento().matches("[0-9]*");
+		boolean validaNumero = documento.matches("[0-9]*");
 
 		boolean verificaDocumento = false;
 
 		if (validaNumero) {
 
-			if (getNumeroDocumento().length() != 14) {
-				setDocumento(null);
-				return new NullCNPJ();
+			if (documento.length() != 14) {
+				return false;
 			}
 
-			if (getNumeroDocumento().matches("(\\d)\\1+")) {
-				setDocumento(null);
-				return new NullCNPJ();
+			if (documento.matches("(\\d)\\1+")) {
+				return false;
 			}
 
 			int primeiroDigito = 0, segundoDigito = 0, indiceAuxiliar = 1;
@@ -54,8 +48,8 @@ public class CNPJ extends Documento {
 
 			ArrayList<Integer> vetor = new ArrayList<Integer>();
 
-			for (int i = 0; i < getNumeroDocumento().length(); i++) {
-				vetor.add((int) getNumeroDocumento().charAt(i) - 48);
+			for (int i = 0; i < documento.length(); i++) {
+				vetor.add((int) documento.charAt(i) - 48);
 			}
 
 			for (int i = 0; i < vetor.size() - 2; i++) {
@@ -92,12 +86,9 @@ public class CNPJ extends Documento {
 		}
 
 		if (verificaDocumento) {
-			setDocumento(getNumeroDocumento());
-			return this;
+			return true;
 		}
-
-		setDocumento(null);
-		return new NullCNPJ();
+		return false;
 	}
 
 }

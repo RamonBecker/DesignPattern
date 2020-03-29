@@ -3,11 +3,15 @@ package br.edu.pattertproject.fireman.Fireman.observer_pattern;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.pattertproject.fireman.Fireman.hook_method.Revisao;
+
 public class Viatura implements Observable {
 	private Ocorrencia ocorrencia;
 	private String nome;
 	private String modelo;
 	private String estado;
+	private Revisao revisao;
+
 	private List<Observer> listObserver;
 
 	public Viatura() {
@@ -39,6 +43,14 @@ public class Viatura implements Observable {
 			observer.notificar(this);
 		}
 
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public Ocorrencia getOcorrencia() {
@@ -76,6 +88,14 @@ public class Viatura implements Observable {
 
 	public void setListObserver(List<Observer> listObserver) {
 		this.listObserver = listObserver;
+	}
+
+	public Revisao getRevisao() {
+		return revisao;
+	}
+
+	public void setRevisao(Revisao revisao) {
+		this.revisao = revisao;
 	}
 
 	@Override

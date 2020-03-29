@@ -3,9 +3,7 @@ package br.edu.pattertproject.fireman.Fireman.dao;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.Endereco;
-import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.Usuario;
 import br.edu.pattertproject.fireman.Fireman.null_objects.NullCentralOcorrencia;
 import br.edu.pattertproject.fireman.Fireman.null_objects.NullViatura;
 import br.edu.pattertproject.fireman.Fireman.observer_pattern.CentralDeOcorrencia;
@@ -14,12 +12,10 @@ import br.edu.pattertproject.fireman.Fireman.observer_pattern.Viatura;
 
 public class DaoOcorrencia {
 
-	private List<Ocorrencia> listOcorrencias;
 	private List<Viatura> listViatura;
 	private List<CentralDeOcorrencia> listCentralDeOcorrencias;
 
 	public DaoOcorrencia() {
-		this.listOcorrencias = new ArrayList<Ocorrencia>();
 		this.listViatura = new ArrayList<Viatura>();
 		this.listCentralDeOcorrencias = new ArrayList<CentralDeOcorrencia>();
 	}
@@ -29,7 +25,7 @@ public class DaoOcorrencia {
 
 		System.out.println("------ Gerando Ocorrência --------");
 
-		System.out.print("Digite o a rua");
+		System.out.print("Digite o a rua:");
 		rua = scanner.next();
 
 		System.out.print("Digite o bairro:");
@@ -43,9 +39,13 @@ public class DaoOcorrencia {
 
 		Endereco endereco = new Endereco(rua, bairro, cidade, numero);
 
-		Ocorrencia ocorrencia = new Ocorrencia(endereco, empenharViatura(scanner));
+		Viatura viatura = empenharViatura(scanner);
 
-		listOcorrencias.add(ocorrencia);
+		Ocorrencia ocorrencia = new Ocorrencia(endereco);
+
+		viatura.setOcorrencia(ocorrencia);
+
+		updateViatura(viatura);
 
 	}
 
@@ -68,16 +68,17 @@ public class DaoOcorrencia {
 		int indice = scanner.nextInt();
 
 		if (indice < listViatura.size()) {
+
 			return listViatura.get(indice);
 		}
 
 		return new NullViatura();
 	}
 
-	public void adicionarObservadorCentralOcorrencia(Scanner scanner) {
+	public CentralDeOcorrencia adicionarObservadorCentralOcorrencia(Scanner scanner) {
 		System.out.println("Adicionar central de ocorrencia para acompanhar a viatura");
 
-		Viatura viatura = empenharViatura(scanner);
+		// Viatura viatura = empenharViatura(scanner);
 
 		CentralDeOcorrencia centralDeOcorrencia = listarCentralOcorrencia(scanner);
 
@@ -85,7 +86,8 @@ public class DaoOcorrencia {
 			centralDeOcorrencia = criarCentralOcorrencia(scanner);
 		}
 
-		viatura.getListObserver().add(centralDeOcorrencia);
+		return centralDeOcorrencia;
+
 	}
 
 	public CentralDeOcorrencia listarCentralOcorrencia(Scanner scanner) {
@@ -114,32 +116,24 @@ public class DaoOcorrencia {
 	public CentralDeOcorrencia criarCentralOcorrencia(Scanner scanner) {
 		System.out.println("Criando central de ocorrencia");
 
-		System.out.println("Adicione um operador para a central");
-
-		System.out.print("Digite o noem do usuario:");
-
-		String nomeUsuario = scanner.next();
-
-		System.out.print("Digite a senha:");
-
-		String senha = scanner.next();
-
-		Usuario usuario = new Usuario(nomeUsuario, senha);
-
-		CentralDeOcorrencia centralDeOcorrencia = new CentralDeOcorrencia(usuario);
+		CentralDeOcorrencia centralDeOcorrencia = new CentralDeOcorrencia();
 
 		listCentralDeOcorrencias.add(centralDeOcorrencia);
-
+		
+		System.out.println("Central de ocorrencia registrada");
+		
 		return centralDeOcorrencia;
 	}
 
 	public Viatura criarViatura(Scanner scanner) {
+
+		System.out.println("---- Criando viatura ----");
 		String nome, modelo;
 
 		System.out.print("Digite o nome da viatura:");
 		nome = scanner.next();
 
-		System.out.println("Digite o modelo da viatura:");
+		System.out.print("Digite o modelo da viatura:");
 		modelo = scanner.next();
 
 		Viatura viatura = new Viatura(nome, modelo);
@@ -150,14 +144,69 @@ public class DaoOcorrencia {
 
 	}
 
-	
-	public void acompanharOcorrencia() {
-		
+	public Viatura selecionarViatura(Scanner scanner) {
+
+		System.out.println("Selecione a viatura para acompanhar a ocorrência:");
+
+		int i = 0;
+
+		for (Viatura auxViatura : listViatura) {
+			System.out.println("Indice:" + i + ") " + auxViatura);
+			i++;
+		}
+
+		System.out.print("Selecione a viatura pelo indice:");
+
+		int indice = scanner.nextInt();
+
+		if (indice < listViatura.size()) {
+			return listViatura.get(indice);
+		}
+
+		return new NullViatura();
 	}
-	
-	
-	public List<Ocorrencia> getListOcorrencias() {
-		return listOcorrencias;
+
+	public void acompanharOcorrencia(Scanner scanner) throws InterruptedException {
+		Viatura viatura = selecionarViatura(scanner);
+
+		if (!(viatura instanceof NullViatura)) {
+
+			List<String> estadosOcorrencia = new ArrayList<String>();
+			estadosOcorrencia.add(viatura + " se deslocando para local da ocorrencia");
+			estadosOcorrencia.add(viatura + " chegou no local de destino");
+			estadosOcorrencia.add(viatura + " encaminhando vitima para hospital");
+			estadosOcorrencia.add(viatura + " encerrou a ocorrência");
+
+			for (String estados : estadosOcorrencia) {
+				System.out.println("\n\n");
+				viatura.notify(estados);
+				System.out.println("\n\n");
+				Thread.sleep(1000);
+			}
+		}
+
+	}
+
+	public void updateViatura(Viatura viatura) {
+
+		int i = 0;
+		int auxPosicao = 0;
+
+		for (Viatura auxViatura : listViatura) {
+			if (auxViatura.getNome().equals(viatura.getNome())) {
+				auxPosicao = i;
+				break;
+			}
+			i++;
+		}
+		CentralDeOcorrencia centralDeOcorrencia = criarCentralOcorrencia(new Scanner(System.in));
+
+		viatura.getListObserver().add(centralDeOcorrencia);
+
+		listViatura.remove(auxPosicao);
+
+		listViatura.add(viatura);
+
 	}
 
 	public List<Viatura> getListViatura() {

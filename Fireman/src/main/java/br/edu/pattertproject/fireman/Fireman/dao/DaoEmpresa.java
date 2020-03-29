@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import br.edu.pattertproject.fireman.Fireman.entites.Empresa;
+import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.CNPJ;
 import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.Documento;
 import br.edu.pattertproject.fireman.Fireman.null_objects.NullEmpresa;
 import br.edu.pattertproject.fireman.Fireman.null_objects.NullTipoTaxa;
@@ -27,7 +28,7 @@ public class DaoEmpresa {
 
 		cnpj = scanner.next();
 
-		Documento documento = new Documento(cnpj);
+		Documento documento = new CNPJ(cnpj);
 
 		System.out.print("Digite o nome fantansia:");
 

@@ -5,11 +5,9 @@ import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.Endereco;
 
 public class Ocorrencia {
 	private Endereco endereco;
-	private Viatura viatura;
 
-	public Ocorrencia(Endereco endereco, Viatura viatura) {
+	public Ocorrencia(Endereco endereco) {
 		this.endereco = endereco;
-		this.viatura = viatura;
 	}
 
 
@@ -20,13 +18,4 @@ public class Ocorrencia {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-
-	public Viatura getViatura() {
-		return viatura;
-	}
-
-	public void setViatura(Viatura viatura) {
-		this.viatura = viatura;
-	}
-
 }

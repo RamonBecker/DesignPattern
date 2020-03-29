@@ -1,17 +1,17 @@
-package br.edu.pattertproject.fireman.Fireman.bridge_pattern;
+package br.edu.pattertproject.fireman.Fireman.testespatterns;
 
 import java.util.Scanner;
 
+import br.edu.pattertproject.fireman.Fireman.bridge_pattern.RiscoElevado;
 import br.edu.pattertproject.fireman.Fireman.bridge_pattern.edificacao.VistoriaParcial;
 import br.edu.pattertproject.fireman.Fireman.dao.DaoVistoria;
 import br.edu.pattertproject.fireman.Fireman.entites.Empresa;
-import br.edu.pattertproject.fireman.Fireman.entites.Vistoria;
-import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.Documento;
+import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.CNPJ;
 
-public class Main {
+public class TestObserver {
 
 	public static void main(String[] args) {
-		Empresa empresa = new Empresa(new Documento("teste"), "teste", "teste", "teste"); 
+		Empresa empresa = new Empresa(new CNPJ("teste"), "teste", "teste", "teste"); 
 		
 		
 		DaoVistoria daoVistoria = new DaoVistoria();
