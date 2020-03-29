@@ -9,12 +9,11 @@ public class Viatura implements Observable {
 	private String modelo;
 	private String estado;
 	private List<Observer> listObserver;
-	
-	
-	public Viatura(){
-		
+
+	public Viatura() {
+		this.listObserver = new ArrayList<Observer>();
 	}
-	
+
 	public Viatura(String nome, String modelo) {
 		this.nome = nome;
 		this.modelo = modelo;
@@ -36,7 +35,7 @@ public class Viatura implements Observable {
 
 		this.estado = message;
 		for (Observer observer : listObserver) {
-			System.out.println(this+" notificando: "+observer);
+			System.out.println(this + " notificando: " + observer);
 			observer.notificar(this);
 		}
 
@@ -49,7 +48,6 @@ public class Viatura implements Observable {
 	public void setOcorrencia(Ocorrencia ocorrencia) {
 		this.ocorrencia = ocorrencia;
 	}
-
 
 	@Override
 	public String recuperarEstado() {

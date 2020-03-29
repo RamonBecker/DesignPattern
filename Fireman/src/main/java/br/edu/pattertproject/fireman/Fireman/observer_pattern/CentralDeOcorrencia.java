@@ -6,6 +6,9 @@ public class CentralDeOcorrencia implements Observer {
 	private Usuario operador;
 	private String estadoViatura;
 
+	public CentralDeOcorrencia() {
+	}
+
 	public CentralDeOcorrencia(Usuario operador) {
 		this.operador = operador;
 
@@ -31,6 +34,14 @@ public class CentralDeOcorrencia implements Observer {
 
 	public void setOperador(Usuario operador) {
 		this.operador = operador;
+	}
+
+	public String getEstadoViatura() {
+		return estadoViatura;
+	}
+
+	public void setEstadoViatura(String estadoViatura) {
+		this.estadoViatura = estadoViatura;
 	}
 
 	@Override
