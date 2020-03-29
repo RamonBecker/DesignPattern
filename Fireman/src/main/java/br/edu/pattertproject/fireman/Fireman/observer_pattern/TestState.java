@@ -1,11 +1,27 @@
 package br.edu.pattertproject.fireman.Fireman.observer_pattern;
 
+import java.util.Scanner;
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.Endereco;
 import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.Usuario;
 
-public class Teste {
+public class TestState {
 
 	public static void main(String[] args) {
+		
+		try(Scanner scanner = new Scanner(System.in)){
+			
+			while(true) {
+				
+				System.out.println("1) Criar Ocorrencia");
+				System.out.println("2) Criar Viatura");
+				System.out.println("3) Acompanhar Ocorrencia");
+				
+			}
+		}
+		
 //		Endereco endereco = new Endereco("Rua", "Bairro", "Cidade", "0");
 //
 //		Viatura viatura = new Viatura("ASU", "460");

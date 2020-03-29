@@ -1,4 +1,4 @@
-package br.edu.pattertproject.fireman.Fireman.bridge_pattern;
+package br.edu.pattertproject.fireman.Fireman.testespatterns;
 
 import java.util.Scanner;
 

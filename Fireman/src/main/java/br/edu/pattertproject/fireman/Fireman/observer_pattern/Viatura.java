@@ -9,7 +9,12 @@ public class Viatura implements Observable {
 	private String modelo;
 	private String estado;
 	private List<Observer> listObserver;
-
+	
+	
+	public Viatura(){
+		
+	}
+	
 	public Viatura(String nome, String modelo) {
 		this.nome = nome;
 		this.modelo = modelo;
