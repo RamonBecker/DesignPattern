@@ -1,20 +1,20 @@
 package br.edu.pattertproject.fireman.Fireman.bridge_pattern.edificacao;
 
+import java.util.Random;
+
 import br.edu.pattertproject.fireman.Fireman.entites.Empresa;
+import br.edu.pattertproject.fireman.Fireman.entites.Vistoria;
 import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.Endereco;
 
 public class Edificacao {
-	private String nome;
 	private Endereco endereco;
 	private double area;
 	private Empresa empresa;
+	private Vistoria vistoria;
+	private int id;
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public Edificacao() {
+		id = new Random().nextInt();
 	}
 
 	public Endereco getEndereco() {
@@ -39,6 +39,28 @@ public class Edificacao {
 
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
+	}
+
+	public Vistoria getVistoria() {
+		return vistoria;
+	}
+
+	public void setVistoria(Vistoria vistoria) {
+		this.vistoria = vistoria;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Edificacao [endereco=" + endereco + ", area=" + area + ", empresa=" + empresa + ", vistoria=" + vistoria
+				+ ", id=" + id + "]";
 	}
 
 }

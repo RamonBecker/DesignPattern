@@ -16,7 +16,7 @@ public abstract class Vistoria {
 		this.bridgeClassificacaoRisco = bridgeClassificacaoRisco;
 	}
 
-	public BridgeClassificacaoRisco processaClassificacaoRisco(List<String> riscosRecebidos) {
+	public BridgeClassificacaoRisco processaClassificacaoRisco(String riscosRecebidos) {
 		return bridgeClassificacaoRisco.processaClassificacaoRisco(riscosRecebidos);
 	}
 

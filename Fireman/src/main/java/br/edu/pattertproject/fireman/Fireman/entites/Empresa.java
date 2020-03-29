@@ -79,7 +79,7 @@ public class Empresa extends PessoaJuridica {
 	public String toString() {
 		return "Empresa : Nome fantasia:" + getNomeFantasia() + ", CNPJ:" + getDocumento().getNumeroDocumento()
 				+ ", Razão Social:" + getRazaoSocial() + ", Taxa:" + getTaxa() + ", Ocupação comercial:"
-				+ getOcupacao();
+				+ getOcupacao()+" "+
+				"Vistoria:"+vistoria+"\n";
 	}
-
 }

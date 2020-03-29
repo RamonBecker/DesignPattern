@@ -1,6 +1,8 @@
 package br.edu.pattertproject.fireman.Fireman.bridge_pattern;
 
 import java.util.Scanner;
+
+import br.edu.pattertproject.fireman.Fireman.bridge_pattern.edificacao.VistoriaHabitese;
 import br.edu.pattertproject.fireman.Fireman.dao.DaoEmpresa;
 import br.edu.pattertproject.fireman.Fireman.dao.DaoVistoria;
 import br.edu.pattertproject.fireman.Fireman.entites.Empresa;
@@ -24,13 +26,17 @@ public class TesteMainBridge {
 				System.out.println("1) Registrar empresa");
 				System.out.println("2) Solicitar vistoria");
 				System.out.println("3) Gerar classificação de risco para vistoria:");
+				System.out.println("4) Listar vistorias parcial e habitese");
+				System.out.print("Selecione a opção:");
 
 				int leitura = scanner.nextInt();
 
 				switch (leitura) {
 				case 1:
 
-					daoEmpresa.createEmpresa(scanner);
+					empresa = daoEmpresa.createEmpresa(scanner);
+
+					daoEmpresa.getListEmpresa().add(empresa);
 
 					break;
 
@@ -40,9 +46,14 @@ public class TesteMainBridge {
 
 					if (!(empresa instanceof NullEmpresa)) {
 
-						vistoria = daoVistoria.tipoVistoriaEscolhido(scanner);
+						vistoria = daoVistoria.tipoVistoriaEscolhido(scanner, "Tipo de vistoria a ser realizado:");
 
-						if (vistoria instanceof NullTipoVistoria) {
+						if (!(vistoria instanceof NullTipoVistoria)) {
+
+							if (vistoria instanceof VistoriaHabitese) {
+								daoVistoria.createEdificacao(scanner, empresa, vistoria);
+							}
+
 							empresa.setVistoria(vistoria);
 							daoEmpresa.updateEmpresa(empresa);
 						}
@@ -53,16 +64,19 @@ public class TesteMainBridge {
 
 				case 3:
 
-					empresa = daoEmpresa.buscarEmpresa(scanner);
+					daoVistoria.gerarClassificacao(scanner, daoEmpresa);
 
-					String retorno = daoVistoria.questionarioFatorRisco(new RiscoElevado(), "Escolha a opção de risco:",
-							scanner);
+					break;
 
-					if (retorno.isEmpty()) {
-						retorno = daoVistoria.questionarioFatorRisco(new RiscoLeve(), "Escolha a opção de risco:",
-								scanner);
-					}
+				case 4:
 
+					daoVistoria.listarEdificacoes();
+					
+					break;
+
+				}
+
+				if (leitura == 5) {
 					break;
 				}
 

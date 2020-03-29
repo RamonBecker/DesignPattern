@@ -1,8 +1,6 @@
 package br.edu.pattertproject.fireman.Fireman.bridge_pattern;
 
-import java.util.List;
 
-import br.edu.pattertproject.fireman.Fireman.null_objects.risco.NullRiscoLeve;
 
 public class RiscoLeve extends Risco {
 
@@ -11,8 +9,8 @@ public class RiscoLeve extends Risco {
 	}
 
 	@Override
-	public BridgeClassificacaoRisco processaClassificacaoRisco(List<String> riscosRecebidos) {
-		if (getFatoresRiscos().get(0).contains(riscosRecebidos.get(0))) {
+	public BridgeClassificacaoRisco processaClassificacaoRisco(String riscosRecebidos) {
+		if (getFatoresRiscos().get(0).contains(riscosRecebidos)) {
 			return this;
 		}
 

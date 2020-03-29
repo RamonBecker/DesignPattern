@@ -54,4 +54,10 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 
+	@Override
+	public String toString() {
+		return "Endereco [rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", numero=" + numero
+				+ ", complemento=" + complemento + "]";
+	}
+
 }

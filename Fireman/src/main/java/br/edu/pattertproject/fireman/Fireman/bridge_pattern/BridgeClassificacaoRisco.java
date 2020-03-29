@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface BridgeClassificacaoRisco {
 
-	public BridgeClassificacaoRisco processaClassificacaoRisco(List<String> riscosRecebidos);
+	public BridgeClassificacaoRisco processaClassificacaoRisco(String risco);
 
 }
