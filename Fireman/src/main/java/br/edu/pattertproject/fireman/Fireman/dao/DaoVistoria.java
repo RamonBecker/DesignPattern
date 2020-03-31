@@ -3,7 +3,6 @@ package br.edu.pattertproject.fireman.Fireman.dao;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import br.edu.pattertproject.fireman.Fireman.bridge_pattern.BridgeClassificacaoRisco;
 import br.edu.pattertproject.fireman.Fireman.bridge_pattern.Risco;
 import br.edu.pattertproject.fireman.Fireman.bridge_pattern.RiscoElevado;
@@ -34,7 +33,7 @@ public class DaoVistoria {
 		Vistoria vistoria = tipoVistoriaEscolhido(scanner, "");
 
 		String retorno = "";
-		
+
 		BridgeClassificacaoRisco classificacao;
 
 		if (vistoria instanceof VistoriaHabitese) {
@@ -47,7 +46,7 @@ public class DaoVistoria {
 			classificacao = edificacao.getVistoria().processaClassificacaoRisco(retorno);
 
 			edificacao.getVistoria().setBridgeClassificacaoRisco(classificacao);
-			
+
 			updateEdificacao(edificacao);
 
 		}
@@ -65,15 +64,14 @@ public class DaoVistoria {
 			empresa.setVistoria(vistoriaParcial);
 
 			empresa.getVistoria().setBridgeClassificacaoRisco(new RiscoElevado());
-			
-			
-			classificacao =	empresa.getVistoria().processaClassificacaoRisco(retorno);
-			
+
+			classificacao = empresa.getVistoria().processaClassificacaoRisco(retorno);
+
 			retorno = questionarioGerarClassificacaoRisco(scanner);
-			
-			System.out.println("retorno:"+retorno);
+
+			System.out.println("retorno:" + retorno);
 			empresa.getVistoria().setBridgeClassificacaoRisco(classificacao);
-			System.out.println("classificacao:"+empresa.getVistoria().getBridgeClassificacaoRisco());
+			System.out.println("classificacao:" + empresa.getVistoria().getBridgeClassificacaoRisco());
 			System.out.println(empresa);
 			daoEmpresa.updateEmpresa(empresa);
 		}
@@ -226,10 +224,12 @@ public class DaoVistoria {
 	}
 
 	public void listarVistoria(Scanner scanner, DaoEmpresa daoEmpresa) {
-		Vistoria vistoria = tipoVistoriaEscolhido(scanner, "Escolha o tipo de vistoria a ser listado");
+		Vistoria vistoria = tipoVistoriaEscolhido(scanner,
+				"Escolha o tipo de vistoria a ser listado");
 
 		if (vistoria instanceof VistoriaParcial) {
 			daoEmpresa.listarEmpresa();
+			
 		}
 		if (vistoria instanceof VistoriaHabitese) {
 			listarEdificacoes();

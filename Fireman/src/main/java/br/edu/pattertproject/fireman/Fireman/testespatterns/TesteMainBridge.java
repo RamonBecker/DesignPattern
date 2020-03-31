@@ -55,8 +55,11 @@ public class TesteMainBridge {
 						empresa.solicitarVistoria();
 
 						if (empresa.getEstadoPagamento() instanceof TaxaQuitada) {
+							
+							
 
 							vistoria = daoVistoria.tipoVistoriaEscolhido(scanner, "");
+									
 
 							if (!(vistoria instanceof NullTipoVistoria)) {
 

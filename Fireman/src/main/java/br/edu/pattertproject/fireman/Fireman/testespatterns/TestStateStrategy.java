@@ -5,7 +5,8 @@ import br.edu.pattertproject.fireman.Fireman.dao.DaoEmpresa;
 import br.edu.pattertproject.fireman.Fireman.entites.Empresa;
 import br.edu.pattertproject.fireman.Fireman.null_objects.NullEmpresa;
 import br.edu.pattertproject.fireman.Fireman.state_pattern.TipoEstadoTaxa;
-import br.edu.pattertproject.fireman.Fireman.strategy_pattern.TipoTaxa;
+import br.edu.pattertproject.fireman.Fireman.strategy_pattern.TaxaAnual;
+import br.edu.pattertproject.fireman.Fireman.strategy_pattern.TaxaImposto;
 
 public class TestStateStrategy {
 
@@ -43,16 +44,30 @@ public class TestStateStrategy {
 				case 2:
 
 					daoEmpresa.listarEmpresa();
+					;
 					break;
 
 				case 3:
 
 					empresa = daoEmpresa.buscarEmpresa(scanner);
 
+					System.out.println("Empresa buscada:" + "" + empresa);
+
 					if (!(empresa instanceof NullEmpresa)) {
-						indice = daoEmpresa.tipoTaxaEscolhido(scanner, TipoTaxa.values(), "Gerando taxa com Strategy");
-						empresa.setStrategyTaxa(TipoTaxa.values()[indice].obterTipoTaxa());
+//						indice = daoEmpresa.tipoTaxaEscolhido(scanner, TipoTaxa.values(), "Gerando taxa com Strategy");
+//						
+//						empresa.setStrategyTaxa(TipoTaxa.values()[indice].obterTipoTaxa());
+//						
+
+						empresa.setStrategyTaxa(new TaxaAnual());
+
 						empresa.gerarTaxa(100);
+
+						empresa.setStrategyTaxa(new TaxaImposto());
+
+						empresa.gerarTaxa(13);
+
+//						
 						System.out.println(empresa);
 					}
 

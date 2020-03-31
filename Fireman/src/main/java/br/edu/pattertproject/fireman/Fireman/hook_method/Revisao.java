@@ -4,23 +4,19 @@ public abstract class Revisao {
 
 	private double valorRevisao;
 
-	public void revisao() {
+	public void orcamento(double revisaoDia, double revisaoMes, double revisaoAnual) {
 
-		revisaoDoDia();
-		revisaoDoMes();
-		revisaoAnual();
-
-		System.out.println("Revisao do dia:" + revisaoDoDia());
-		System.out.println("Revisao do mês:" + revisaoDoMes());
-		System.out.println("Revisao anual:" + revisaoAnual());
+		System.out.println("Revisao do dia:" + revisaoDoDia(revisaoDia));
+		System.out.println("Revisao do mês:" + revisaoDoMes(revisaoMes));
+		System.out.println("Revisao anual:" + revisaoAnual(revisaoAnual));
 
 	}
 
-	public abstract double revisaoDoDia();
+	public abstract double revisaoDoDia(double valor);
 
-	public abstract double revisaoDoMes();
+	public abstract double revisaoDoMes(double valor);
 
-	public abstract double revisaoAnual();
+	public abstract double revisaoAnual(double valor);
 
 	public double getValorRevisao() {
 		return valorRevisao;

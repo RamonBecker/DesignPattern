@@ -16,7 +16,6 @@ public class RiscoElevado extends Risco {
 		for (int i = 0; i < getFatoresRiscos().size(); i++) {
 
 			if (getFatoresRiscos().get(i).equals(riscosRecebido)) {
-				System.out.println("Entrou aquis");
 				return this;
 			}
 

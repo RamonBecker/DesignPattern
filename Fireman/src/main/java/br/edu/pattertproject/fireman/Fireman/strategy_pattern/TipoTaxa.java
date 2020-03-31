@@ -17,6 +17,4 @@ public enum TipoTaxa {
 
 	public abstract StrategyTaxa obterTipoTaxa();
 	
-	
-
 }

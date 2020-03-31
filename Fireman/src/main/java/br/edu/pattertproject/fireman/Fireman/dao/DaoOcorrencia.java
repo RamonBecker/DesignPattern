@@ -40,7 +40,8 @@ public class DaoOcorrencia {
 		Endereco endereco = new Endereco(rua, bairro, cidade, numero);
 
 		Viatura viatura = empenharViatura(scanner);
-
+			
+		
 		Ocorrencia ocorrencia = new Ocorrencia(endereco);
 
 		viatura.setOcorrencia(ocorrencia);
@@ -78,9 +79,9 @@ public class DaoOcorrencia {
 	public CentralDeOcorrencia adicionarObservadorCentralOcorrencia(Scanner scanner) {
 		System.out.println("Adicionar central de ocorrencia para acompanhar a viatura");
 
-		// Viatura viatura = empenharViatura(scanner);
-
 		CentralDeOcorrencia centralDeOcorrencia = listarCentralOcorrencia(scanner);
+				
+			
 
 		if (centralDeOcorrencia instanceof NullCentralOcorrencia) {
 			centralDeOcorrencia = criarCentralOcorrencia(scanner);

@@ -1,28 +1,32 @@
 package br.edu.pattertproject.fireman.Fireman.hook_method;
 
-public class RevisaoMecanica extends Revisao {
+public class RevisaoEquipamentoHospitalar extends Revisao {
 
 	@Override
 	public double revisaoDoDia(double valor) {
-
-		setValorRevisao(valor * 6.0) ;
+		setValorRevisao(valor);
 		return getValorRevisao();
 	}
 
 	@Override
 	public double revisaoDoMes(double valor) {
-		setValorRevisao((revisaoDoDia(valor) * 0.60) + getValorRevisao());
+
+		setValorRevisao((getValorRevisao() * 0.50) + revisaoDoDia(valor));
+
 		return getValorRevisao();
 	}
 
 	@Override
 	public double revisaoAnual(double valor) {
-		setValorRevisao(revisaoDoMes(valor) * revisaoDoDia(valor) + getValorRevisao());
+
+		setValorRevisao((revisaoDoMes(valor) * revisaoDoDia(valor)) + 1000);
+
 		return getValorRevisao();
 	}
 
 	@Override
 	public String toString() {
-		return "Revisao Mecanica :" + getValorRevisao();
+		return "Revisao Equipamentos:"+getValorRevisao();
 	}
+	
 }

@@ -2,31 +2,53 @@ package br.edu.pattertproject.fireman.Fireman.testespatterns;
 
 import java.util.Scanner;
 
-import br.edu.pattertproject.fireman.Fireman.bridge_pattern.RiscoElevado;
-import br.edu.pattertproject.fireman.Fireman.bridge_pattern.edificacao.VistoriaParcial;
-import br.edu.pattertproject.fireman.Fireman.dao.DaoVistoria;
-import br.edu.pattertproject.fireman.Fireman.entites.Empresa;
-import br.edu.pattertproject.fireman.Fireman.entites.Pessoa.documento.CNPJ;
+import br.edu.pattertproject.fireman.Fireman.dao.DaoOcorrencia;
 
 public class TestObserver {
 
 	public static void main(String[] args) {
-		Empresa empresa = new Empresa(new CNPJ("teste"), "teste", "teste", "teste"); 
-		
-		
-		DaoVistoria daoVistoria = new DaoVistoria();
-		
-		String retorno = daoVistoria.questionarioFatorRisco(new RiscoElevado(), "OP", new Scanner(System.in));
-		
-		VistoriaParcial vistoria = new VistoriaParcial();
-		
-		vistoria.setBridgeClassificacaoRisco(new RiscoElevado());
-		
-		vistoria.processaClassificacaoRisco(retorno);
-		
-		System.out.println("Retorno"+retorno);
-		
-		System.out.println(vistoria.processaClassificacaoRisco(retorno));
-	}
 
+		try (Scanner scanner = new Scanner(System.in)) {
+
+			DaoOcorrencia daoOcorrencia = new DaoOcorrencia();
+
+			while (true) {
+
+				System.out.println("1) Criar Ocorrencia");
+				System.out.println("2) Criar Viatura");
+				System.out.println("3) Acompanhar Ocorrencia");
+				System.out.println("4) Sair");
+
+				int leitura = scanner.nextInt();
+
+				switch (leitura) {
+				case 1:
+
+					daoOcorrencia.gerarOcorrencia(scanner);
+
+					break;
+
+				case 2:
+
+					daoOcorrencia.criarViatura(scanner);
+
+					break;
+
+				case 3:
+
+					daoOcorrencia.acompanharOcorrencia(scanner);
+
+					break;
+				}
+
+				if (leitura == 4) {
+					break;
+				}
+
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+	}
 }

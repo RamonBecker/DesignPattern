@@ -4,7 +4,8 @@ public class TaxaImposto implements StrategyTaxa {
 
 	@Override
 	public double calcularTaxa(double valor) {
-		return valor * 0.71;
+		
+		return valor * 0.7;
 	}
 
 }
