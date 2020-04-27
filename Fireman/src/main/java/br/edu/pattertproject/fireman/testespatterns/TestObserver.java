@@ -1,8 +1,8 @@
 package br.edu.pattertproject.fireman.testespatterns;
 
 import java.util.Scanner;
+import br.edu.pattertproject.fireman.part1.dao.DaoOcorrencia;
 
-import br.edu.pattertproject.fireman.dao.DaoOcorrencia;
 
 public class TestObserver {
 

@@ -1,16 +1,16 @@
 package br.edu.pattertproject.fireman.testespatterns;
 
-import br.edu.pattertproject.fireman.chan_responsibility_pattern.CacheMemory;
-import br.edu.pattertproject.fireman.chan_responsibility_pattern.RecuperarDado;
-import br.edu.pattertproject.fireman.entites.Empresa;
-import br.edu.pattertproject.fireman.entites.Pessoa.documento.documentoCNPJ;
 import br.edu.pattertproject.fireman.exception.ErrorSearchDado;
+import br.edu.pattertproject.fireman.part1.entites.Empresa;
+import br.edu.pattertproject.fireman.part1.entites.documents.DocumentoCNPJ;
+import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.CacheMemory;
+import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.RecuperarDado;
 
 public class TestChain_Responsibility {
 
 	public static void main(String[] args) {
 
-		Empresa empresa = new Empresa(new documentoCNPJ("07864837000128"), "Nome fantasia", "Razao Social",
+		Empresa empresa = new Empresa(new DocumentoCNPJ("07864837000128"), "Nome fantasia", "Razao Social",
 				"Ocupacional");
 
 		RecuperarDado recuperarDado = new CacheMemory();

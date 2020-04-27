@@ -2,15 +2,15 @@ package br.edu.pattertproject.fireman.testespatterns;
 
 import java.util.Scanner;
 
-import br.edu.pattertproject.fireman.bridge_pattern.edificacao.VistoriaHabitese;
-import br.edu.pattertproject.fireman.dao.DaoEmpresa;
-import br.edu.pattertproject.fireman.dao.DaoVistoria;
-import br.edu.pattertproject.fireman.entites.Empresa;
-import br.edu.pattertproject.fireman.entites.Vistoria;
-import br.edu.pattertproject.fireman.null_objects.NullEmpresa;
-import br.edu.pattertproject.fireman.null_objects.NullTipoVistoria;
-import br.edu.pattertproject.fireman.state_pattern.TaxaQuitada;
-import br.edu.pattertproject.fireman.state_pattern.TipoEstadoTaxa;
+import br.edu.pattertproject.fireman.part1.bridge_pattern.VistoriaHabitese;
+import br.edu.pattertproject.fireman.part1.dao.DaoEmpresa;
+import br.edu.pattertproject.fireman.part1.dao.DaoVistoria;
+import br.edu.pattertproject.fireman.part1.entites.Empresa;
+import br.edu.pattertproject.fireman.part1.entites.Vistoria;
+import br.edu.pattertproject.fireman.part1.null_objects.NullEmpresa;
+import br.edu.pattertproject.fireman.part1.null_objects.NullTipoVistoria;
+import br.edu.pattertproject.fireman.part1.state_pattern.TaxaQuitada;
+import br.edu.pattertproject.fireman.part1.state_pattern.TipoEstadoTaxa;
 
 public class TesteMainBridge {
 

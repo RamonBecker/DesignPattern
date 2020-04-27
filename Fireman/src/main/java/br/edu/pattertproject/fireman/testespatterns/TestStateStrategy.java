@@ -1,13 +1,13 @@
 package br.edu.pattertproject.fireman.testespatterns;
 
 import java.util.Scanner;
+import br.edu.pattertproject.fireman.part1.dao.DaoEmpresa;
+import br.edu.pattertproject.fireman.part1.entites.Empresa;
+import br.edu.pattertproject.fireman.part1.null_objects.NullEmpresa;
+import br.edu.pattertproject.fireman.part1.state_pattern.TipoEstadoTaxa;
+import br.edu.pattertproject.fireman.part1.strategy_pattern.TaxaAnual;
+import br.edu.pattertproject.fireman.part1.strategy_pattern.TaxaImposto;
 
-import br.edu.pattertproject.fireman.dao.DaoEmpresa;
-import br.edu.pattertproject.fireman.entites.Empresa;
-import br.edu.pattertproject.fireman.null_objects.NullEmpresa;
-import br.edu.pattertproject.fireman.state_pattern.TipoEstadoTaxa;
-import br.edu.pattertproject.fireman.strategy_pattern.TaxaAnual;
-import br.edu.pattertproject.fireman.strategy_pattern.TaxaImposto;
 
 public class TestStateStrategy {
 

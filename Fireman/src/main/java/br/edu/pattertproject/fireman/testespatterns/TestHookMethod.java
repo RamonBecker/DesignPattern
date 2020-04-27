@@ -1,9 +1,9 @@
 package br.edu.pattertproject.fireman.testespatterns;
 
-import br.edu.pattertproject.fireman.hook_method.Revisao;
-import br.edu.pattertproject.fireman.hook_method.RevisaoEquipamentoHospitalar;
-import br.edu.pattertproject.fireman.hook_method.RevisaoMecanica;
-import br.edu.pattertproject.fireman.observer_pattern.Viatura;
+import br.edu.pattertproject.fireman.part1.hook_method.Revisao;
+import br.edu.pattertproject.fireman.part1.hook_method.RevisaoEquipamentoHospitalar;
+import br.edu.pattertproject.fireman.part1.hook_method.RevisaoMecanica;
+import br.edu.pattertproject.fireman.part1.observer_pattern.Viatura;
 
 public class TestHookMethod {
 
