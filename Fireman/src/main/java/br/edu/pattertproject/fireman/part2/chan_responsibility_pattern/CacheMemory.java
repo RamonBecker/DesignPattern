@@ -8,16 +8,16 @@ public class CacheMemory extends RecuperarDado implements InterfaceDao {
 
 	private static CacheMemory cacheMemory;
 
-	private CacheMemory() {
+	public CacheMemory() {
 		super();
 		listsEmpresas = new HashMap<>();
-		listsOcorrências = new HashMap<>();
+		listsViaturas = new HashMap<>();
 	}
 
 	public CacheMemory(RecuperarDado recuperador) {
 		super(recuperador);
 		listsEmpresas = new HashMap<>();
-		listsOcorrências = new HashMap<>();
+		listsViaturas = new HashMap<>();
 	}
 
 	public static CacheMemory getInstance() {
@@ -56,7 +56,7 @@ public class CacheMemory extends RecuperarDado implements InterfaceDao {
 	@Override
 	public String toString() {
 		return "CacheMemory {listsEmpresas: " + getListsEmpresas() + "} \n :" + "\n" + "{listsOcorrências:"
-				+ getListsOcorrências() + "}\n";
+				+ getListsViaturas() + "}\n";
 	}
 
 }

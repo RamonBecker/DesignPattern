@@ -5,13 +5,14 @@ import java.util.Map;
 import br.edu.pattertproject.fireman.exception.ErrorSearchDado;
 import br.edu.pattertproject.fireman.exception.ErrorSearchList;
 import br.edu.pattertproject.fireman.part1.entites.Empresa;
-import br.edu.pattertproject.fireman.part1.observer_pattern.Ocorrencia;
+import br.edu.pattertproject.fireman.part1.observer_pattern.Viatura;
+
 
 public abstract class RecuperarDado {
-
-	private RecuperarDado recuperador;
+	
+	protected RecuperarDado recuperador;
 	protected Map<String, Empresa> listsEmpresas;
-	protected Map<String, Ocorrencia> listsOcorrências;
+	protected Map<String, Viatura> listsViaturas;
 
 	public RecuperarDado() {
 		super();
@@ -60,14 +61,14 @@ public abstract class RecuperarDado {
 		this.listsEmpresas = listsEmpresas;
 	}
 
-	public Map<String, Ocorrencia> getListsOcorrências() {
-		if (listsOcorrências == null) {
-			listsOcorrências = new HashMap<>();
+	public Map<String, Viatura> getListsViaturas() {
+		if (listsViaturas == null) {
+			listsViaturas = new HashMap<>();
 		}
-		return listsOcorrências;
+		return listsViaturas;
 	}
 
-	public void setListsOcorrências(Map<String, Ocorrencia> listsOcorrências) {
-		this.listsOcorrências = listsOcorrências;
+	public void setListsViaturas(Map<String, Viatura> listsViaturas) {
+		this.listsViaturas = listsViaturas;
 	}
 }

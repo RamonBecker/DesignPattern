@@ -1,22 +1,20 @@
 package br.edu.pattertproject.fireman.testespatterns.part2;
 
 import java.util.Scanner;
-
-import br.edu.pattertproject.fireman.exception.ErrorSearchDado;
 import br.edu.pattertproject.fireman.part1.entites.Empresa;
 import br.edu.pattertproject.fireman.part1.entites.documents.DocumentoCNPJ;
+import br.edu.pattertproject.fireman.part1.entites.person.Endereco;
+import br.edu.pattertproject.fireman.part1.observer_pattern.Ocorrencia;
+import br.edu.pattertproject.fireman.part1.observer_pattern.Viatura;
 import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.BancoMysql;
 import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.BancoPostGreSQL;
 import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.CacheMemory;
 import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.RecuperarDado;
 
 public class TestChain_Responsibility {
+	private static RecuperarDado banco = null;
 
 	public static void main(String[] args) {
-
-		BancoPostGreSQL bancoPostGreSQL = null;
-		BancoMysql bancoMysql = null;
-		CacheMemory cacheMemory = null;
 
 		try (Scanner scanner = new Scanner(System.in)) {
 			while (true) {
@@ -25,59 +23,87 @@ public class TestChain_Responsibility {
 				System.out.println("2) Gerar ocorrência");
 				System.out.println("3) Buscar empresa");
 				System.out.println("4) Buscar ocorrência");
+				System.out.println("5) Listar dados");
 
 				int key = scanner.nextInt();
 
 				switch (key) {
+
 				case 1:
 
 					Empresa empresa = addEmpresa(scanner);
 
-					System.out.println("Escolha os bancos que deseja inserir os dados");
-					System.out.println("1) Cache");
-					System.out.println("2) MYSQL");
-					System.out.println("3) PostGreSQL");
-
-					int opBD = scanner.nextInt();
-
-					if (opBD == 1) {
-						cacheMemory = CacheMemory.getInstance();
-						cacheMemory.add(empresa.getDocumento().getNumeroDocumento(), empresa,
-								cacheMemory.getListsEmpresas());
-					}
-
-					else if (opBD == 2) {
-						bancoMysql = BancoMysql.getInstance();
-						bancoMysql.add(empresa.getDocumento().getNumeroDocumento(), empresa,
-								bancoMysql.getListsEmpresas());
-					}
-
-					else if (opBD == 3) {
-						bancoPostGreSQL = BancoPostGreSQL.getInstance();
-						bancoPostGreSQL.add(empresa.getDocumento().getNumeroDocumento(), empresa,
-								bancoPostGreSQL.getListsEmpresas());
-					}
+					selectedBanco(scanner, empresa);
 
 					break;
+				case 2:
+					
+					break;
+
+				case 5:
+					System.out.println(banco.getListsEmpresas());
 
 				}
 
 			}
 
-			// Empresa empresa = new Empresa(new DocumentoCNPJ("07864837000128"), "Nome
-			// fantasia", "Razao Social",
-			// "Ocupacional");
-
-			// RecuperarDado recuperarDado = new CacheMemory();
-			// recuperarDado.getListsEmpresas().put(empresa.getDocumento().getNumeroDocumento(),
-			// empresa);
-
-			// Empresa ep = (Empresa) recuperarDado.buscarDado("07864837000128",
-			// recuperarDado.getListsEmpresas());
-			// System.out.println(ep);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static <T> void selectedBanco(Scanner scanner, T dado) {
+
+		System.out.println("Escolha os bancos que deseja inserir os dados");
+		System.out.println("1) Cache");
+		System.out.println("2) MYSQL");
+		System.out.println("3) PostGreSQL");
+
+		int opBD = scanner.nextInt();
+
+		if (opBD == 1) {
+			addObject(CacheMemory.getInstance(), dado);
+		}
+
+		else if (opBD == 2) {
+			addObject(BancoMysql.getInstance(), dado);
+		}
+
+		else if (opBD == 3) {
+			addObject(BancoPostGreSQL.getInstance(), dado);
+		}
+	}
+
+	private static Viatura addOcorrencia(Scanner scanner) {
+
+		String rua, bairro, cidade, numero, nomeViatura, modeloViatura;
+
+		System.out.print("Digite a rua:");
+		rua = scanner.next().trim();
+
+		System.out.print("Digite o bairro:");
+		bairro = scanner.next().trim();
+
+		System.out.print("Digite a cidade:");
+		cidade = scanner.next().trim();
+
+		System.out.print("Digite o numero:");
+		numero = scanner.next().trim();
+
+		Endereco endereco = new Endereco(rua, bairro, cidade, numero);
+
+		Ocorrencia ocorrencia = new Ocorrencia(endereco);
+
+		System.out.print("Digite o nome da viatura:");
+		nomeViatura = scanner.next().trim();
+
+		System.out.print("Digite o modelo da viatura:");
+		modeloViatura = scanner.next().trim();
+
+		Viatura viatura = new Viatura(nomeViatura, modeloViatura);
+		viatura.setOcorrencia(ocorrencia);
+
+		return viatura;
 	}
 
 	private static Empresa addEmpresa(Scanner scanner) {
@@ -97,5 +123,41 @@ public class TestChain_Responsibility {
 
 		return new Empresa(new DocumentoCNPJ(cnpj), nomeFantasia, razaoSocial, ocupacao);
 
+	}
+
+	private static <T> void addObject(RecuperarDado recuperarDado, T dado) {
+		banco = recuperarDado;
+
+		if (banco instanceof CacheMemory) {
+
+			CacheMemory cacheMemory = (CacheMemory) banco;
+
+			if (dado instanceof Empresa) {
+				Empresa empresa = (Empresa) dado;
+				cacheMemory.add(empresa.getDocumento().getNumeroDocumento(), empresa, cacheMemory.getListsEmpresas());
+			}
+
+		}
+
+		else if (banco instanceof BancoPostGreSQL) {
+			BancoPostGreSQL bancoPostGreSQL = (BancoPostGreSQL) banco;
+
+			if (dado instanceof Empresa) {
+				Empresa empresa = (Empresa) dado;
+				bancoPostGreSQL.add(empresa.getDocumento().getNumeroDocumento(), empresa,
+						bancoPostGreSQL.getListsEmpresas());
+			}
+
+		}
+
+		else if (banco instanceof BancoMysql) {
+			BancoMysql bancoMysql = (BancoMysql) banco;
+
+			if (dado instanceof Empresa) {
+				Empresa empresa = (Empresa) dado;
+
+				bancoMysql.add(empresa.getDocumento().getNumeroDocumento(), empresa, bancoMysql.getListsEmpresas());
+			}
+		}
 	}
 }

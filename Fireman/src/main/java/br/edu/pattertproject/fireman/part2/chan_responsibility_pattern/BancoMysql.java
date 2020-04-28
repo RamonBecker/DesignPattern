@@ -11,13 +11,13 @@ public class BancoMysql extends RecuperarDado implements InterfaceDao {
 	private BancoMysql() {
 		super();
 		listsEmpresas = new HashMap<>();
-		listsOcorrências = new HashMap<>();
+		listsViaturas = new HashMap<>();
 	}
 
 	public BancoMysql(RecuperarDado recuperador) {
 		super(recuperador);
 		listsEmpresas = new HashMap<>();
-		listsOcorrências = new HashMap<>();
+		listsViaturas = new HashMap<>();
 	}
 
 	public static BancoMysql getInstance() {
@@ -55,7 +55,7 @@ public class BancoMysql extends RecuperarDado implements InterfaceDao {
 
 	@Override
 	public String toString() {
-		return "BancoMysql {ListsEmpresas:" + getListsEmpresas() + "} \n" + "{ListsOcorrências:" + getListsOcorrências()
+		return "BancoMysql {ListsEmpresas:" + getListsEmpresas() + "} \n" + "{ListsOcorrências:" + getListsViaturas()
 				+ "} \n";
 	}
 

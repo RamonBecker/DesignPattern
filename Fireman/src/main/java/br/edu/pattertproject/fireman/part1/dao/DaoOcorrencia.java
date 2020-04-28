@@ -167,6 +167,7 @@ public class DaoOcorrencia {
 	}
 
 	public void acompanharOcorrencia(Scanner scanner) throws InterruptedException {
+			
 		Viatura viatura = selecionarViatura(scanner);
 
 		if (!(viatura instanceof NullViatura)) {

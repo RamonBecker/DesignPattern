@@ -12,13 +12,13 @@ public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 	private BancoPostGreSQL() {
 		super();
 		listsEmpresas = new HashMap<>();
-		listsOcorrências = new HashMap<>();
+		listsViaturas = new HashMap<>();
 	}
 
 	public BancoPostGreSQL(RecuperarDado recuperarDado) {
 		super(recuperarDado);
 		listsEmpresas = new HashMap<>();
-		listsOcorrências = new HashMap<>();
+		listsViaturas = new HashMap<>();
 
 	}
 
@@ -58,7 +58,7 @@ public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 	@Override
 	public String toString() {
 		return "BancoPostGreSQL {ListsEmpresas:" + getListsEmpresas() + "} \n" + "" + "}\n" + " {ListsOcorrências:"
-				+ getListsOcorrências() + "}\n";
+				+ getListsViaturas() + "}\n";
 	}
 
 }
