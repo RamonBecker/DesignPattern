@@ -3,12 +3,11 @@ package br.edu.pattertproject.fireman.part2.chan_responsibility_pattern;
 import java.util.Map;
 import br.edu.pattertproject.fireman.exception.ErrorSearchList;
 
-public class BancoMysql extends RecuperarDado {
+public class BancoMysql extends RecuperarDado implements InterfaceDao {
 
 	public BancoMysql() {
 		super();
 		getListsEmpresas();
-		getListsVistorias();
 		getListsOcorrências();
 	}
 
@@ -16,7 +15,6 @@ public class BancoMysql extends RecuperarDado {
 		super(recuperador);
 
 		getListsEmpresas();
-		getListsVistorias();
 		getListsOcorrências();
 	}
 
@@ -42,12 +40,16 @@ public class BancoMysql extends RecuperarDado {
 		throw new ErrorSearchList("A key: " + nome + " não se encontra na lista:" + this);
 	}
 
+
+	@Override
+	public void add(Object key, Object value, Map<Object, Object> map) {
+		map.put(key, value);
+		
+	}
 	@Override
 	public String toString() {
-		return "BancoMysql [getListsEmpresas()=" + getListsEmpresas() + ", getListsVistorias()=" + getListsVistorias()
-				+ ", getListsOcorrências()=" + getListsOcorrências() + "]";
+		return "BancoMysql {ListsEmpresas:" + getListsEmpresas() + "} \n" + "{ListsOcorrências:" + getListsOcorrências()
+				+ "} \n";
 	}
 
-	
-	
 }

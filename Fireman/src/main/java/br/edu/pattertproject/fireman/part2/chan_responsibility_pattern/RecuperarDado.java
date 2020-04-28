@@ -5,15 +5,12 @@ import java.util.Map;
 import br.edu.pattertproject.fireman.exception.ErrorSearchDado;
 import br.edu.pattertproject.fireman.exception.ErrorSearchList;
 import br.edu.pattertproject.fireman.part1.entites.Empresa;
-import br.edu.pattertproject.fireman.part1.entites.Vistoria;
 import br.edu.pattertproject.fireman.part1.observer_pattern.Ocorrencia;
-
 
 public abstract class RecuperarDado {
 
 	private RecuperarDado recuperador;
 	private Map<String, Empresa> listsEmpresas;
-	private Map<String, Vistoria> listsVistorias;
 	private Map<String, Ocorrencia> listsOcorrências;
 
 	public RecuperarDado() {
@@ -61,17 +58,6 @@ public abstract class RecuperarDado {
 
 	public void setListsEmpresas(Map<String, Empresa> listsEmpresas) {
 		this.listsEmpresas = listsEmpresas;
-	}
-
-	public Map<String, Vistoria> getListsVistorias() {
-		if (listsVistorias == null) {
-			listsVistorias = new HashMap<>();
-		}
-		return listsVistorias;
-	}
-
-	public void setListsVistorias(Map<String, Vistoria> listsVistorias) {
-		this.listsVistorias = listsVistorias;
 	}
 
 	public Map<String, Ocorrencia> getListsOcorrências() {

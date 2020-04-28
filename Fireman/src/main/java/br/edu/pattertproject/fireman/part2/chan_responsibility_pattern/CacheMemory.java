@@ -3,22 +3,19 @@ package br.edu.pattertproject.fireman.part2.chan_responsibility_pattern;
 import java.util.Map;
 import br.edu.pattertproject.fireman.exception.ErrorSearchList;
 
-public class CacheMemory extends RecuperarDado {
-	
-	
+public class CacheMemory extends RecuperarDado implements InterfaceDao {
+
 	public CacheMemory() {
 		super();
 		getListsEmpresas();
-		getListsVistorias();
 		getListsOcorrências();
 	}
 
 	public CacheMemory(RecuperarDado recuperador) {
 		super(recuperador);
 		getListsEmpresas();
-		getListsVistorias();
 		getListsOcorrências();
-		
+
 	}
 
 	@Override
@@ -41,13 +38,17 @@ public class CacheMemory extends RecuperarDado {
 		}
 		throw new ErrorSearchList("A key: " + nome + " não se encontra na lista:" + this);
 	}
-	
+
 
 	@Override
+	public void add(Object key, Object value, Map<Object, Object> map) {
+		map.put(key, value);
+		
+	}
+	@Override
 	public String toString() {
-		return "CacheMemory {listsEmpresas: " + getListsEmpresas()+"} \n {listsVistorias:" + getListsVistorias() + "}"
-				+ "\n"
-				+ "{listsOcorrências:" + getListsOcorrências() + "}\n";
+		return "CacheMemory {listsEmpresas: " + getListsEmpresas() + "} \n :" + "\n" + "{listsOcorrências:"
+				+ getListsOcorrências() + "}\n";
 	}
 
 }

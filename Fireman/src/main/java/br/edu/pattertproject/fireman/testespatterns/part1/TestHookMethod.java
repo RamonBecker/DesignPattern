@@ -1,4 +1,4 @@
-package br.edu.pattertproject.fireman.testespatterns;
+package br.edu.pattertproject.fireman.testespatterns.part1;
 
 import br.edu.pattertproject.fireman.part1.hook_method.Revisao;
 import br.edu.pattertproject.fireman.part1.hook_method.RevisaoEquipamentoHospitalar;

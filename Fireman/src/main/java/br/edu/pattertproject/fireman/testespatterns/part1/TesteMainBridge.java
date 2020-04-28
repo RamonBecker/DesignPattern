@@ -1,4 +1,4 @@
-package br.edu.pattertproject.fireman.testespatterns;
+package br.edu.pattertproject.fireman.testespatterns.part1;
 
 import java.util.Scanner;
 

@@ -4,19 +4,17 @@ import java.util.Map;
 
 import br.edu.pattertproject.fireman.exception.ErrorSearchList;
 
-public class BancoPostGreSQL extends RecuperarDado {
+public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 
 	public BancoPostGreSQL() {
 		super();
 		getListsEmpresas();
-		getListsVistorias();
 		getListsOcorrências();
 	}
 
 	public BancoPostGreSQL(RecuperarDado recuperarDado) {
 		super(recuperarDado);
 		getListsEmpresas();
-		getListsVistorias();
 		getListsOcorrências();
 
 	}
@@ -42,10 +40,22 @@ public class BancoPostGreSQL extends RecuperarDado {
 		throw new ErrorSearchList("A key: " + nome + " não se encontra na lista:" + this);
 	}
 
+	
+
+	@Override
+	public void add(Object key, Object value, Map<Object, Object> map) {
+		map.put(key, value);
+		
+	}
+
+	
 	@Override
 	public String toString() {
-		return "BancoPostGreSQL {ListsEmpresas:" + getListsEmpresas() + "} \n" + "{ListsVistorias:"
-				+ getListsVistorias() + "}\n" + " {ListsOcorrências:" + getListsOcorrências() + "}\n";
+		return "BancoPostGreSQL {ListsEmpresas:" + getListsEmpresas() + "} \n" + "" + "}\n" + " {ListsOcorrências:"
+				+ getListsOcorrências() + "}\n";
 	}
+
+
+
 
 }
