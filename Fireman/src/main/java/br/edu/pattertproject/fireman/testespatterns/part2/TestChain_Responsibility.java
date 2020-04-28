@@ -41,17 +41,21 @@ public class TestChain_Responsibility {
 					int opBD = scanner.nextInt();
 
 					if (opBD == 1) {
-						cacheMemory = new CacheMemory();
+						cacheMemory = CacheMemory.getInstance();
 						cacheMemory.add(empresa.getDocumento().getNumeroDocumento(), empresa,
 								cacheMemory.getListsEmpresas());
 					}
 
 					else if (opBD == 2) {
-
+						bancoMysql = BancoMysql.getInstance();
+						bancoMysql.add(empresa.getDocumento().getNumeroDocumento(), empresa,
+								bancoMysql.getListsEmpresas());
 					}
 
 					else if (opBD == 3) {
-
+						bancoPostGreSQL = BancoPostGreSQL.getInstance();
+						bancoPostGreSQL.add(empresa.getDocumento().getNumeroDocumento(), empresa,
+								bancoPostGreSQL.getListsEmpresas());
 					}
 
 					break;

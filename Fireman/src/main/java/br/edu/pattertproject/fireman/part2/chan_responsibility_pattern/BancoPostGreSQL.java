@@ -1,27 +1,44 @@
 package br.edu.pattertproject.fireman.part2.chan_responsibility_pattern;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import br.edu.pattertproject.fireman.exception.ErrorSearchList;
 
 public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 
-	public BancoPostGreSQL() {
+	private static BancoPostGreSQL bancoPostGreSQL;
+
+	private BancoPostGreSQL() {
 		super();
-		getListsEmpresas();
-		getListsOcorrências();
+		listsEmpresas = new HashMap<>();
+		listsOcorrências = new HashMap<>();
 	}
 
 	public BancoPostGreSQL(RecuperarDado recuperarDado) {
 		super(recuperarDado);
-		getListsEmpresas();
-		getListsOcorrências();
+		listsEmpresas = new HashMap<>();
+		listsOcorrências = new HashMap<>();
 
 	}
 
-	@Override
-	protected <T> Object recuperarDado(String nome, Map<String, T> map) {
+	public static BancoPostGreSQL getInstance() {
+		if (bancoPostGreSQL == null) {
+			bancoPostGreSQL = new BancoPostGreSQL();
+		}
+		return bancoPostGreSQL;
+	}
 
+	@Override
+	protected <K, V> Object buscarLista(Map<K, V> map, String nome) throws ErrorSearchList {
+		if (map.containsKey(nome)) {
+			return map.get(nome);
+		}
+		throw new ErrorSearchList("A key: " + nome + " não se encontra na lista:" + this);
+	}
+
+	@Override
+	protected <K, V> Object recuperarDado(String nome, Map<K, V> map) {
 		Object dadoBuscado = null;
 		try {
 			dadoBuscado = buscarLista(map, nome);
@@ -30,14 +47,6 @@ public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 		}
 
 		return dadoBuscado;
-	}
-
-	@Override
-	protected <T> Object buscarLista(Map<String, T> map, String nome) throws ErrorSearchList {
-		if (map.containsKey(nome)) {
-			return map.get(nome);
-		}
-		throw new ErrorSearchList("A key: " + nome + " não se encontra na lista:" + this);
 	}
 
 	@Override

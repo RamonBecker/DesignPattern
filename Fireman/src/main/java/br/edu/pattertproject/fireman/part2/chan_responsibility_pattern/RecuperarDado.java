@@ -10,8 +10,8 @@ import br.edu.pattertproject.fireman.part1.observer_pattern.Ocorrencia;
 public abstract class RecuperarDado {
 
 	private RecuperarDado recuperador;
-	private Map<String, Empresa> listsEmpresas;
-	private Map<String, Ocorrencia> listsOcorrências;
+	protected Map<String, Empresa> listsEmpresas;
+	protected Map<String, Ocorrencia> listsOcorrências;
 
 	public RecuperarDado() {
 		super();
@@ -37,9 +37,9 @@ public abstract class RecuperarDado {
 		return recuperador.buscarDado(nome, map);
 	}
 
-	protected abstract <T> Object buscarLista(Map<String, T> map, String nome) throws ErrorSearchList;
+	protected abstract <K, V> Object buscarLista(Map<K, V> map, String nome) throws ErrorSearchList;
 
-	protected abstract <T> Object recuperarDado(String nome, Map<String, T> map);
+	protected abstract <K, V> Object recuperarDado(String nome, Map<K, V> map);
 
 	public RecuperarDado getRecuperador() {
 		return recuperador;

@@ -1,26 +1,42 @@
 package br.edu.pattertproject.fireman.part2.chan_responsibility_pattern;
 
+import java.util.HashMap;
 import java.util.Map;
 import br.edu.pattertproject.fireman.exception.ErrorSearchList;
 
 public class CacheMemory extends RecuperarDado implements InterfaceDao {
 
-	public CacheMemory() {
+	private static CacheMemory cacheMemory;
+
+	private CacheMemory() {
 		super();
-		getListsEmpresas();
-		getListsOcorrências();
+		listsEmpresas = new HashMap<>();
+		listsOcorrências = new HashMap<>();
 	}
 
 	public CacheMemory(RecuperarDado recuperador) {
 		super(recuperador);
-		getListsEmpresas();
-		getListsOcorrências();
+		listsEmpresas = new HashMap<>();
+		listsOcorrências = new HashMap<>();
+	}
 
+	public static CacheMemory getInstance() {
+		if (cacheMemory == null) {
+			cacheMemory = new CacheMemory();
+		}
+		return cacheMemory;
 	}
 
 	@Override
-	protected <T> Object recuperarDado(String nome, Map<String, T> map) {
+	protected <K, V> Object buscarLista(Map<K, V> map, String nome) throws ErrorSearchList {
+		if (map.containsKey(nome)) {
+			return map.get(nome);
+		}
+		throw new ErrorSearchList("A key: " + nome + " não se encontra na lista:" + this);
+	}
 
+	@Override
+	protected <K, V> Object recuperarDado(String nome, Map<K, V> map) {
 		Object dadoBuscado = null;
 		try {
 			dadoBuscado = buscarLista(map, nome);
@@ -29,14 +45,6 @@ public class CacheMemory extends RecuperarDado implements InterfaceDao {
 		}
 
 		return dadoBuscado;
-	}
-
-	@Override
-	protected <T> Object buscarLista(Map<String, T> map, String nome) throws ErrorSearchList {
-		if (map.containsKey(nome)) {
-			return map.get(nome);
-		}
-		throw new ErrorSearchList("A key: " + nome + " não se encontra na lista:" + this);
 	}
 
 	@Override

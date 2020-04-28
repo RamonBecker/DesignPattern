@@ -1,26 +1,42 @@
 package br.edu.pattertproject.fireman.part2.chan_responsibility_pattern;
 
+import java.util.HashMap;
 import java.util.Map;
 import br.edu.pattertproject.fireman.exception.ErrorSearchList;
 
 public class BancoMysql extends RecuperarDado implements InterfaceDao {
 
-	public BancoMysql() {
+	private static BancoMysql bancoMysql;
+
+	private BancoMysql() {
 		super();
-		getListsEmpresas();
-		getListsOcorrências();
+		listsEmpresas = new HashMap<>();
+		listsOcorrências = new HashMap<>();
 	}
 
 	public BancoMysql(RecuperarDado recuperador) {
 		super(recuperador);
+		listsEmpresas = new HashMap<>();
+		listsOcorrências = new HashMap<>();
+	}
 
-		getListsEmpresas();
-		getListsOcorrências();
+	public static BancoMysql getInstance() {
+		if (bancoMysql == null) {
+			bancoMysql = new BancoMysql();
+		}
+		return bancoMysql;
 	}
 
 	@Override
-	protected <T> Object recuperarDado(String nome, Map<String, T> map) {
+	protected <K, V> Object buscarLista(Map<K, V> map, String nome) throws ErrorSearchList {
+		if (map.containsKey(nome)) {
+			return map.get(nome);
+		}
+		throw new ErrorSearchList("A key: " + nome + " não se encontra na lista:" + this);
+	}
 
+	@Override
+	protected <K, V> Object recuperarDado(String nome, Map<K, V> map) {
 		Object dadoBuscado = null;
 		try {
 			dadoBuscado = buscarLista(map, nome);
@@ -29,15 +45,6 @@ public class BancoMysql extends RecuperarDado implements InterfaceDao {
 		}
 
 		return dadoBuscado;
-	}
-
-	@Override
-	protected <T> Object buscarLista(Map<String, T> map, String nome) throws ErrorSearchList {
-
-		if (map.containsKey(nome)) {
-			return map.get(nome);
-		}
-		throw new ErrorSearchList("A key: " + nome + " não se encontra na lista:" + this);
 	}
 
 	@Override
