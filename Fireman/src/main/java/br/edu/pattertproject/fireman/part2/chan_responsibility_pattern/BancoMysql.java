@@ -40,12 +40,12 @@ public class BancoMysql extends RecuperarDado implements InterfaceDao {
 		throw new ErrorSearchList("A key: " + nome + " não se encontra na lista:" + this);
 	}
 
-
 	@Override
-	public void add(Object key, Object value, Map<Object, Object> map) {
+	public <K, V> void add(K key, V value, Map<K, V> map) {
 		map.put(key, value);
-		
+
 	}
+
 	@Override
 	public String toString() {
 		return "BancoMysql {ListsEmpresas:" + getListsEmpresas() + "} \n" + "{ListsOcorrências:" + getListsOcorrências()

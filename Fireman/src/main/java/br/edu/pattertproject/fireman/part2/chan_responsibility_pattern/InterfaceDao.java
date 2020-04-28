@@ -4,6 +4,5 @@ import java.util.Map;
 
 public interface InterfaceDao {
 
-
-	public void add(Object key, Object value, Map<Object, Object> map);
+	public <K, V> void add(K key, V value, Map<K, V> map);
 }

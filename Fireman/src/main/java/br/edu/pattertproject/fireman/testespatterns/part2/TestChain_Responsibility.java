@@ -42,8 +42,8 @@ public class TestChain_Responsibility {
 
 					if (opBD == 1) {
 						cacheMemory = new CacheMemory();
-
-						cacheMemory.add((Object)key, empresa, cacheMemory.getListsEmpresas());
+						cacheMemory.add(empresa.getDocumento().getNumeroDocumento(), empresa,
+								cacheMemory.getListsEmpresas());
 					}
 
 					else if (opBD == 2) {
