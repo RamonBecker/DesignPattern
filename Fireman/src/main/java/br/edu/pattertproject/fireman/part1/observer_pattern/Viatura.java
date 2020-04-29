@@ -100,7 +100,7 @@ public class Viatura implements Observable {
 
 	@Override
 	public String toString() {
-		return "Viatura:" + nome + ", modelo:" + modelo;
+		return "Viatura:" + nome + ", modelo:" + modelo + " Ocorrencia:"+ocorrencia;
 	}
 
 }

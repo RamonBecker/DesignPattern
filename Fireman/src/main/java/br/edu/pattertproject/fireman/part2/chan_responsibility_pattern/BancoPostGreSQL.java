@@ -3,8 +3,6 @@ package br.edu.pattertproject.fireman.part2.chan_responsibility_pattern;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.edu.pattertproject.fireman.exception.ErrorSearchList;
-
 public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 
 	private static BancoPostGreSQL bancoPostGreSQL;
@@ -19,7 +17,6 @@ public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 		super(recuperarDado);
 		listsEmpresas = new HashMap<>();
 		listsViaturas = new HashMap<>();
-
 	}
 
 	public static BancoPostGreSQL getInstance() {
@@ -30,21 +27,22 @@ public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 	}
 
 	@Override
-	protected <K, V> Object buscarLista(Map<K, V> map, String nome) throws ErrorSearchList {
+	protected <K, V> Object buscarLista(Map<K, V> map, String nome) {
 		if (map.containsKey(nome)) {
 			return map.get(nome);
 		}
-		throw new ErrorSearchList("A key: " + nome + " não se encontra na lista:" + this);
+		return null;
 	}
 
 	@Override
-	protected <K, V> Object recuperarDado(String nome, Map<K, V> map) {
+	protected <K, V> Object recuperarDado(String nome) {
 		Object dadoBuscado = null;
-		try {
-			dadoBuscado = buscarLista(map, nome);
-		} catch (ErrorSearchList e) {
-			System.err.println(e.getMessage());
-		}
+		
+			dadoBuscado = buscarLista(listsEmpresas, nome);
+
+			if (dadoBuscado == null) {
+				dadoBuscado = buscarLista(listsViaturas, nome);
+			}
 
 		return dadoBuscado;
 	}

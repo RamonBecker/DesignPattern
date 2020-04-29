@@ -3,13 +3,11 @@ package br.edu.pattertproject.fireman.part2.chan_responsibility_pattern;
 import java.util.HashMap;
 import java.util.Map;
 import br.edu.pattertproject.fireman.exception.ErrorSearchDado;
-import br.edu.pattertproject.fireman.exception.ErrorSearchList;
 import br.edu.pattertproject.fireman.part1.entites.Empresa;
 import br.edu.pattertproject.fireman.part1.observer_pattern.Viatura;
 
-
 public abstract class RecuperarDado {
-	
+
 	protected RecuperarDado recuperador;
 	protected Map<String, Empresa> listsEmpresas;
 	protected Map<String, Viatura> listsViaturas;
@@ -22,32 +20,35 @@ public abstract class RecuperarDado {
 		this.recuperador = recuperador;
 	}
 
-	public <T> Object buscarDado(String nome, Map<String, T> map) throws ErrorSearchDado {
-		Object dadoBuscado = recuperarDado(nome, map);
+	public <T, K, V> Object buscarDado(String nome) throws ErrorSearchDado {
+		
+		Object dadoBuscado = recuperarDado(nome);
 
 		if (dadoBuscado == null) {
-			return chamarRecuperador(nome, map);
+			return chamarRecuperador(nome);
 		}
+
 		return dadoBuscado;
 	}
 
-	private <T> Object chamarRecuperador(String nome, Map<String, T> map) throws ErrorSearchDado {
+	private <T, K, V> Object chamarRecuperador(String nome) throws ErrorSearchDado {
 		if (this.recuperador == null) {
 			throw new ErrorSearchDado("Não foi possível buscar essa informação");
 		}
-		return recuperador.buscarDado(nome, map);
+		return recuperador.buscarDado(nome);
 	}
 
-	protected abstract <K, V> Object buscarLista(Map<K, V> map, String nome) throws ErrorSearchList;
+	protected abstract <K, V> Object buscarLista(Map<K, V> map, String nome);
 
-	protected abstract <K, V> Object recuperarDado(String nome, Map<K, V> map);
+	protected abstract <K, V> Object recuperarDado(String nome);
 
 	public RecuperarDado getRecuperador() {
 		return recuperador;
 	}
 
-	public void setRecuperador(RecuperarDado recuperador) {
+	public RecuperarDado setRecuperador(RecuperarDado recuperador) {
 		this.recuperador = recuperador;
+		return recuperador;
 	}
 
 	public Map<String, Empresa> getListsEmpresas() {
