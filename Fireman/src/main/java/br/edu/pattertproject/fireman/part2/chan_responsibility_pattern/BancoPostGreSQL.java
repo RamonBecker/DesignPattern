@@ -53,10 +53,32 @@ public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 
 	}
 
+
+
+	@Override
+	public <K, V> Object buscar(K key, Map<K, V> map) {
+		if (map.containsKey(key)) {
+			return map.get(key);
+		}
+
+		return null;
+	}
+
+	@Override
+	public <K, V> Object remover(K key, Map<K, V> map) {
+		if (map.containsKey(key)) {
+			return map.remove(key);
+		}
+		return null;
+
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "BancoPostGreSQL {ListsEmpresas:" + getListsEmpresas() + "} \n" + "" + "}\n" + " {ListsOcorrências:"
 				+ getListsViaturas() + "}\n";
 	}
+
 
 }

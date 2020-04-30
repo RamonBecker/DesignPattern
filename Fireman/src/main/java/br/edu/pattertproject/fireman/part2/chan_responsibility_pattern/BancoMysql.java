@@ -54,6 +54,24 @@ public class BancoMysql extends RecuperarDado implements InterfaceDao {
 	}
 
 	@Override
+	public <K, V> Object buscar(K key, Map<K, V> map) {
+		if (map.containsKey(key)) {
+			return map.get(key);
+		}
+
+		return null;
+	}
+
+	@Override
+	public <K, V> Object remover(K key, Map<K, V> map) {
+		if (map.containsKey(key)) {
+			return map.remove(key);
+		}
+		return null;
+
+	}
+
+	@Override
 	public String toString() {
 		return "BancoMysql {ListsEmpresas:" + getListsEmpresas() + "} \n" + "{ListsOcorrências:" + getListsViaturas()
 				+ "} \n";

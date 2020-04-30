@@ -2,9 +2,6 @@ package br.edu.pattertproject.fireman.part2.chan_responsibility_pattern;
 
 import java.util.HashMap;
 import java.util.Map;
-import br.edu.pattertproject.fireman.part1.entites.person.Endereco;
-import br.edu.pattertproject.fireman.part1.observer_pattern.Ocorrencia;
-import br.edu.pattertproject.fireman.part1.observer_pattern.Viatura;
 
 public class CacheMemory extends RecuperarDado implements InterfaceDao {
 
@@ -20,15 +17,6 @@ public class CacheMemory extends RecuperarDado implements InterfaceDao {
 		super(recuperador);
 		listsEmpresas = new HashMap<>();
 		listsViaturas = new HashMap<>();
-
-		Endereco endereco = new Endereco("Rua", "Bairro", "cidade", "75");
-
-		Ocorrencia ocorrencia = new Ocorrencia(endereco);
-
-		Viatura viatura = new Viatura("00", "Modelo");
-		viatura.setOcorrencia(ocorrencia);
-
-		listsViaturas.put("00", viatura);
 	}
 
 	public static CacheMemory getInstance() {
@@ -62,9 +50,28 @@ public class CacheMemory extends RecuperarDado implements InterfaceDao {
 	@Override
 	public <K, V> void add(K key, V value, Map<K, V> map) {
 		map.put(key, value);
-
 	}
 
+
+
+	@Override
+	public <K, V> Object buscar(K key, Map<K, V> map) {
+		if (map.containsKey(key)) {
+			return map.get(key);
+		}
+
+		return null;
+	}
+
+	@Override
+	public <K, V> Object remover(K key, Map<K, V> map) {
+		if (map.containsKey(key)) {
+			return map.remove(key);
+		}
+		return null;
+
+	}
+	
 	@Override
 	public String toString() {
 		return "CacheMemory {listsEmpresas: " + getListsEmpresas() + "} \n :" + "\n" + "{listsOcorrências:"
