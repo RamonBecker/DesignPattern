@@ -23,13 +23,13 @@ public class TestChain_Responsibility {
 
 		try (Scanner scanner = new Scanner(System.in)) {
 			while (true) {
-				System.out.println("Digite as opções para escolher:");
+			
 				System.out.println("1) Cadastrar empresa");
 				System.out.println("2) Gerar ocorrência");
 				System.out.println("3) Buscar empresa");
 				System.out.println("4) Buscar ocorrência");
 				System.out.println("5) Listar dados");
-
+				System.out.print("Digite as opções para escolher:");
 				int key = scanner.nextInt();
 
 				switch (key) {
@@ -170,12 +170,12 @@ public class TestChain_Responsibility {
 
 			if (dado instanceof Empresa) {
 				Empresa empresa = (Empresa) dado;
-				cacheMemory.add(empresa.getDocumento().getNumeroDocumento(), empresa, cacheMemory.getListsEmpresas());
+				cacheMemory.add(empresa.getDocumento().getNumeroDocumento(), empresa);
 			}
 
 			if (dado instanceof Viatura) {
 				Viatura viatura = (Viatura) dado;
-				cacheMemory.add(viatura.getModelo(), viatura, cacheMemory.getListsViaturas());
+				cacheMemory.add(viatura.getModelo(), viatura);
 			}
 
 		}
@@ -185,12 +185,11 @@ public class TestChain_Responsibility {
 
 			if (dado instanceof Empresa) {
 				Empresa empresa = (Empresa) dado;
-				bancoPostGreSQL.add(empresa.getDocumento().getNumeroDocumento(), empresa,
-						bancoPostGreSQL.getListsEmpresas());
+				bancoPostGreSQL.add(empresa.getDocumento().getNumeroDocumento(), empresa);
 			}
 			if (dado instanceof Viatura) {
 				Viatura viatura = (Viatura) dado;
-				bancoPostGreSQL.add(viatura.getModelo(), viatura, bancoPostGreSQL.getListsViaturas());
+				bancoPostGreSQL.add(viatura.getModelo(), viatura);
 			}
 
 		}
@@ -200,7 +199,7 @@ public class TestChain_Responsibility {
 
 			if (dado instanceof Empresa) {
 				Empresa empresa = (Empresa) dado;
-				bancoMysql.add(empresa.getDocumento().getNumeroDocumento(), empresa, bancoMysql.getListsEmpresas());
+				bancoMysql.add(empresa.getDocumento().getNumeroDocumento(), empresa);
 			}
 		}
 	}

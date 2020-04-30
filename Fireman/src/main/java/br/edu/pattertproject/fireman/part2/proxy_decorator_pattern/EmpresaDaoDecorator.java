@@ -1,11 +1,13 @@
 package br.edu.pattertproject.fireman.part2.proxy_decorator_pattern;
 
-import java.util.Map;
+import br.edu.pattertproject.fireman.exception.ErrorAddEmpresa;
+import br.edu.pattertproject.fireman.exception.ErrorBuscarEmpresa;
+import br.edu.pattertproject.fireman.exception.ErrorRemoverEmpresa;
 
-public class EmpresaDaoDecorator implements RequisicaoProxy {
-	private static RequisicaoProxy requisicaoProxy;
+public class EmpresaDaoDecorator implements InterfaceDao {
+	private static InterfaceDao requisicaoProxy;
 
-	public static RequisicaoProxy getInstance() {
+	public static InterfaceDao getInstance() {
 		if (requisicaoProxy == null) {
 			requisicaoProxy = new EmpresaDaoProxy();
 		}
@@ -13,26 +15,52 @@ public class EmpresaDaoDecorator implements RequisicaoProxy {
 	}
 
 	@Override
-	public <K, V> void add(K key, V value, Map<K, V> map) {
-		if (key != null & value != null & map != null) {
-			getInstance().add(key, value, map);
+	public <K, V> void add(K key, V value) {
+		if (key != null & value != null) {
+			try {
+
+				if (!((String) key).isBlank()) {
+					getInstance().add(key, value);
+				} else {
+					throw new ErrorAddEmpresa("A key não pode ser vazia, erro ao adicionar a empresa");
+				}
+			} catch (ErrorAddEmpresa e) {
+				System.err.println(e.getMessage());
+			}
 		}
 	}
 
 	@Override
-	public <K, V> Object buscar(K key, Map<K, V> map) {
-		if (key != null & map != null) {
-			return getInstance().buscar(key, map);
+	public <K, V> Object buscar(K key, V value) throws ErrorBuscarEmpresa {
+		if (key != null & value != null) {
+			try {
+				if (!((String) key).isBlank()) {
+
+					return getInstance().buscar(key, value);
+				} else {
+					throw new ErrorBuscarEmpresa("A key não pode ser vazia, erro ao buscar a empresa");
+				}
+			} catch (ErrorBuscarEmpresa e) {
+				e.printStackTrace();
+			}
 		}
-		return null;
+		throw new ErrorBuscarEmpresa("Erro ao buscar a empresa !");
 	}
 
 	@Override
-	public <K, V> Object remover(K key, Map<K, V> map) {
-		if (key != null & map != null) {
-			return getInstance().remover(key, map);
-		}
-		return null;
-	}
+	public <K, V> Object remover(K key, V value) throws ErrorRemoverEmpresa {
+		if (key != null & value != null) {
+			try {
 
+				if (!((String) key).isBlank()) {
+					return getInstance().remover(key, value);
+				}else {
+					throw new ErrorRemoverEmpresa("A key não pode ser vazia, erro ao remover a empresa");
+				}
+			} catch (ErrorRemoverEmpresa e) {
+				e.printStackTrace();
+			}
+		}
+		throw new ErrorRemoverEmpresa("Erro ao remover a empresa");
+	}
 }
