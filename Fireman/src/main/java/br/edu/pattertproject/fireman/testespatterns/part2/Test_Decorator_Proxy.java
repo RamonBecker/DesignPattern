@@ -20,9 +20,7 @@ public class Test_Decorator_Proxy {
 
 	public static void main(String[] args) {
 
-		
-
-		try (Scanner scanner = new Scanner(System.in)){
+		try (Scanner scanner = new Scanner(System.in)) {
 
 			while (true) {
 
@@ -48,12 +46,15 @@ public class Test_Decorator_Proxy {
 					System.out.println("Empresa buscada:" + buscarEmpresa(scanner));
 
 					break;
+
 				case 3:
 
 					proxy.setInterfaceDao(selecionarBanco(scanner));
 					System.out.println("Objeto removido:" + removerEmpresa(scanner));
 
 					break;
+				case 4:
+					selecionarBancoParalistarDados(scanner);
 				}
 			}
 		} catch (Exception e) {
@@ -98,19 +99,35 @@ public class Test_Decorator_Proxy {
 
 		proxy.add(empresa.getDocumento().getNumeroDocumento(), empresa);
 	}
-	
-	
+
 	private static <K, V> void selecionarBancoParalistarDados(Scanner scanner) throws ErrorSelectedBanco {
-		
+
 		Object object = selecionarBanco(scanner);
-		
-		if(object instanceof BancoMysql) {
-			
+
+		if (object instanceof BancoMysql) {
+			listarDados(((BancoMysql) object).getListsEmpresas());
+		}
+
+		else if (object instanceof BancoPostGreSQL) {
+			listarDados(((BancoPostGreSQL) object).getListsEmpresas());
+		}
+
+		else if (object instanceof CacheMemory) {
+			listarDados(((CacheMemory) object).getListsEmpresas());
 		}
 	}
-	
 
-	
+	private static <K, V> void listarDados(Map<K, V> map) {
+
+		if (map.isEmpty()) {
+			System.out.println("A lista não possui nenhum objeto cadastrado");
+			return;
+		}
+		for (V value : map.values()) {
+			System.out.println(value);
+		}
+	}
+
 	private static InterfaceDao selecionarBanco(Scanner scanner) throws ErrorSelectedBanco {
 
 		System.out.println("Selecione o banco para o proxy");
@@ -132,7 +149,7 @@ public class Test_Decorator_Proxy {
 		else if (op == 3) {
 			return CacheMemory.getInstance();
 		}
-		
+
 		throw new ErrorSelectedBanco("Erro ao selecionar o banco");
 	}
 }

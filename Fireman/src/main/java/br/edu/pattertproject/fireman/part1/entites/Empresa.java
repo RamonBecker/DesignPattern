@@ -1,9 +1,9 @@
 package br.edu.pattertproject.fireman.part1.entites;
 
 import br.edu.pattertproject.fireman.part1.entites.documents.Documento;
-import br.edu.pattertproject.fireman.part1.entites.person.PessoaJuridica;
 import br.edu.pattertproject.fireman.part1.state_pattern.InterfaceEstado;
 import br.edu.pattertproject.fireman.part1.strategy_pattern.StrategyTaxa;
+import br.edu.pattertproject.fireman.part2.static_factory.PessoaJuridica;
 
 public class Empresa extends PessoaJuridica {
 
@@ -86,4 +86,6 @@ public class Empresa extends PessoaJuridica {
 				+ ", Razão Social:" + getRazaoSocial() + ", Taxa:" + getTaxa() + ", Ocupação comercial:" + getOcupacao()
 				+ " " + "Vistoria:" + vistoria + "\n";
 	}
+
+	
 }

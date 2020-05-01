@@ -1,16 +1,25 @@
-package br.edu.pattertproject.fireman.part1.entites.person;
+package br.edu.pattertproject.fireman.part2.static_factory;
 
 import br.edu.pattertproject.fireman.part1.entites.documents.Documento;
+import br.edu.pattertproject.fireman.part1.entites.person.Pessoa;
 
 public class PessoaJuridica extends Pessoa {
-	private String razaoSocial;
-	private String nomeFantasia;
-	
+	protected String razaoSocial;
+	protected String nomeFantasia;
+
 	public PessoaJuridica() {
 	}
-	
-	
-	
+
+	public PessoaJuridica(String razaoSocial) {
+		this.razaoSocial = razaoSocial;
+		this.nomeFantasia = "";
+	}
+
+	public PessoaJuridica(String razaoSocial, String nomeFantasia) {
+		this.razaoSocial = razaoSocial;
+		this.nomeFantasia = nomeFantasia;
+	}
+
 	public PessoaJuridica(Documento documento, String razaoSocial, String nomeFantasia) {
 		super(documento);
 		this.razaoSocial = razaoSocial;
