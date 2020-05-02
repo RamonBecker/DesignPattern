@@ -1,7 +1,7 @@
-package br.edu.pattertproject.fireman.part2.static_factory;
+package br.edu.pattertproject.fireman.part2.static_factory_pattern;
 
 import br.edu.pattertproject.fireman.part1.entites.documents.Documento;
-import br.edu.pattertproject.fireman.part2.static_factory.PessoaJuridica;
+import br.edu.pattertproject.fireman.part2.static_factory_pattern.PessoaJuridica;
 
 public class Empresa extends PessoaJuridica {
 
@@ -12,9 +12,8 @@ public class Empresa extends PessoaJuridica {
 	}
 
 	public Empresa(String ocupacao) {
+		super();
 		this.ocupacao = ocupacao;
-		this.nomeFantasia = "";
-		this.razaoSocial = "";
 	}
 
 	public Empresa(Documento documento, String razaoSocial, String nomeFantasia, String ocupacao) {

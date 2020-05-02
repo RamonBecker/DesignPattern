@@ -3,7 +3,7 @@ package br.edu.pattertproject.fireman.part1.entites;
 import br.edu.pattertproject.fireman.part1.entites.documents.Documento;
 import br.edu.pattertproject.fireman.part1.state_pattern.InterfaceEstado;
 import br.edu.pattertproject.fireman.part1.strategy_pattern.StrategyTaxa;
-import br.edu.pattertproject.fireman.part2.static_factory.PessoaJuridica;
+import br.edu.pattertproject.fireman.part2.static_factory_pattern.PessoaJuridica;
 
 public class Empresa extends PessoaJuridica {
 

@@ -1,4 +1,4 @@
-package br.edu.pattertproject.fireman.part2.static_factory;
+package br.edu.pattertproject.fireman.part2.static_factory_pattern;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import br.edu.pattertproject.fireman.part1.entites.documents.NullCNPJ;
 
 public class FactoryEmpresa {
 
-	private static List<String> palavras;
+	private static List<String> palavras = new ArrayList<String>();;
 
 	public static PessoaJuridica criaRazaoSocialNomeFantasia(String razaoSocial, String nomeFantasia) {
 		palavras.clear();
@@ -20,7 +20,7 @@ public class FactoryEmpresa {
 		try {
 			verificarVetor(palavras);
 
-			pessoaJuridica = new PessoaJuridica(razaoSocial, nomeFantasia);
+			pessoaJuridica = new Empresa(razaoSocial, nomeFantasia);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -30,8 +30,6 @@ public class FactoryEmpresa {
 	public static PessoaJuridica criaOcupacaoRazaoSocialNomeFantasia(String ocupacao, String razaoSocial,
 			String nomeFantasia) {
 
-		palavras = new ArrayList<String>();
-		
 		palavras.add(ocupacao);
 		palavras.add(razaoSocial);
 		palavras.add(nomeFantasia);
@@ -51,25 +49,48 @@ public class FactoryEmpresa {
 	}
 
 	public static PessoaJuridica criarDocumento(DocumentoCNPJ documentoCNPJ, String razaoSocial, String nomeFantasia,
-			String ocupacao) {
+			String ocupacao) throws Exception {
 		palavras.clear();
 		palavras.add(razaoSocial);
 		palavras.add(nomeFantasia);
 		palavras.add(ocupacao);
 
+		Exception exception = null;
+
 		try {
 
 			verificarVetor(palavras);
 
-			if (documentoCNPJ instanceof NullCNPJ) {
-				throw new IllegalArgumentException("CNPJ inválido");
+			if (!(documentoCNPJ instanceof NullCNPJ)) {
+
+				PessoaJuridica empresa = new Empresa(documentoCNPJ, razaoSocial, nomeFantasia, ocupacao);
+
+				return empresa;
+			} else {
+				exception = new IllegalArgumentException("CNPJ inválido");
+
 			}
 
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
 
-		PessoaJuridica empresa = new Empresa(documentoCNPJ, razaoSocial, nomeFantasia, ocupacao);
+		throw new Exception(exception);
+
+	}
+
+	public static PessoaJuridica criarOcupacao(String ocupacao) {
+		palavras.clear();
+		palavras.add(ocupacao);
+
+		Empresa empresa = null;
+		try {
+			verificarVetor(palavras);
+
+			empresa = new Empresa(ocupacao);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
 
 		return empresa;
 	}

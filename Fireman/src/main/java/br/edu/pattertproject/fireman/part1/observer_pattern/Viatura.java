@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import br.edu.pattertproject.fireman.part1.hook_method.Revisao;
 
-
 public class Viatura implements Observable {
 	private Ocorrencia ocorrencia;
 	private String nome;
 	private String modelo;
 	private String estado;
 	private Revisao revisao;
+	private double velocidade;
 
 	private List<Observer> listObserver;
 
@@ -22,6 +22,13 @@ public class Viatura implements Observable {
 		this.nome = nome;
 		this.modelo = modelo;
 		this.listObserver = new ArrayList<Observer>();
+	}
+
+	public Viatura(Ocorrencia ocorrencia, String nome, String modelo, double velocidade) {
+		this.ocorrencia = ocorrencia;
+		this.nome = nome;
+		this.modelo = modelo;
+		this.velocidade = velocidade;
 	}
 
 	@Override
@@ -98,9 +105,17 @@ public class Viatura implements Observable {
 		this.revisao = revisao;
 	}
 
+	public double getVelocidade() {
+		return velocidade;
+	}
+
+	public void setVelocidade(double velocidade) {
+		this.velocidade = velocidade;
+	}
+
 	@Override
 	public String toString() {
-		return "Viatura:" + nome + ", modelo:" + modelo + " Ocorrencia:"+ocorrencia;
+		return "Viatura:" + nome + ", modelo:" + modelo + " Ocorrencia:" + ocorrencia;
 	}
 
 }

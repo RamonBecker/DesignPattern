@@ -1,4 +1,4 @@
-package br.edu.pattertproject.fireman.part2.static_factory;
+package br.edu.pattertproject.fireman.part2.static_factory_pattern;
 
 import br.edu.pattertproject.fireman.part1.entites.documents.Documento;
 import br.edu.pattertproject.fireman.part1.entites.person.Pessoa;
