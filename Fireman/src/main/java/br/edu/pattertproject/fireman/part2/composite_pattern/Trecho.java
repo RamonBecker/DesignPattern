@@ -1,19 +1,15 @@
 package br.edu.pattertproject.fireman.part2.composite_pattern;
 
 import br.edu.pattertproject.fireman.part1.entites.person.Endereco;
-import br.edu.pattertproject.fireman.part1.observer_pattern.Viatura;
 
 public class Trecho implements ITrecho {
 	private Endereco origem;
 	private Endereco destino;
-	private double distancia;
-	private Viatura viatura;
+	private double trajeto;
 
-	public Trecho(Endereco origem, Endereco destino, double distancia, Viatura viatura) {
+	public Trecho(Endereco origem, Endereco destino) {
 		this.origem = origem;
 		this.destino = destino;
-		this.distancia = distancia;
-		this.viatura = viatura;
 	}
 
 	@Override
@@ -26,18 +22,18 @@ public class Trecho implements ITrecho {
 		return this.destino;
 	}
 
+	@Override
 	public void setDistancia(double distancia) {
-		this.distancia = distancia;
+		this.trajeto = distancia;
 	}
 
 	@Override
 	public double getDistancia() {
-		return this.distancia;
+		return this.trajeto;
 	}
 
 	@Override
-	public Viatura getViatura() {
-		return this.viatura;
+	public String toString() {
+		return "Trecho | {origem:" + origem + "}, {destino:" + destino + "} , {distancia:" + trajeto + "} \n";
 	}
-
 }

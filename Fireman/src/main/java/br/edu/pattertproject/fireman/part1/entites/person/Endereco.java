@@ -7,6 +7,12 @@ public class Endereco {
 	private String numero;
 	private String complemento;
 
+	public Endereco(String rua, String bairro, String cidade) {
+		this.rua = rua;
+		this.bairro = bairro;
+		this.cidade = cidade;
+	}
+
 	public Endereco(String rua, String bairro, String cidade, String numero) {
 		this.rua = rua;
 		this.bairro = bairro;
