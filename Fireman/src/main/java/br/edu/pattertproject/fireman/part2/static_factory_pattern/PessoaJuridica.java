@@ -1,7 +1,5 @@
 package br.edu.pattertproject.fireman.part2.static_factory_pattern;
 
-import br.edu.pattertproject.fireman.part1.entites.documents.Documento;
-import br.edu.pattertproject.fireman.part1.entites.person.Pessoa;
 
 public class PessoaJuridica extends Pessoa {
 	protected String razaoSocial;
@@ -12,7 +10,6 @@ public class PessoaJuridica extends Pessoa {
 
 	public PessoaJuridica(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
-		this.nomeFantasia = "";
 	}
 
 	public PessoaJuridica(String razaoSocial, String nomeFantasia) {
@@ -44,7 +41,9 @@ public class PessoaJuridica extends Pessoa {
 
 	@Override
 	public String toString() {
-		return "Pessoa Juridica: razaoSocial:" + razaoSocial + ", nomeFantasia:" + nomeFantasia + "\n";
+		return "PessoaJuridica [razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia + "]";
 	}
 
+
+	
 }

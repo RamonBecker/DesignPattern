@@ -34,7 +34,7 @@ public class Test_composite_pattern {
 			ITrecho trechoAB = new TrechoComposto(trechoA, trechoB, viatura);
 
 			System.out.println("---------------- Trecho A ao B ----------------");
-
+			
 			((TrechoComposto) trechoAB).calcTempoPercorrido();
 
 			((TrechoComposto) trechoAB).calcDeslocamento();

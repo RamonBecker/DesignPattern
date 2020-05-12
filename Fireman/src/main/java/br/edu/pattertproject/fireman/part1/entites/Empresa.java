@@ -1,9 +1,10 @@
 package br.edu.pattertproject.fireman.part1.entites;
 
 import br.edu.pattertproject.fireman.part1.entites.documents.Documento;
+import br.edu.pattertproject.fireman.part1.entites.person.PessoaJuridica;
 import br.edu.pattertproject.fireman.part1.state_pattern.InterfaceEstado;
 import br.edu.pattertproject.fireman.part1.strategy_pattern.StrategyTaxa;
-import br.edu.pattertproject.fireman.part2.static_factory_pattern.PessoaJuridica;
+
 
 public class Empresa extends PessoaJuridica {
 
@@ -17,8 +18,8 @@ public class Empresa extends PessoaJuridica {
 	public Empresa() {
 	}
 
-	public Empresa(Documento documento, String nomeFantasia, String razaoSocial, String ocupacao) {
-		super(documento, nomeFantasia, razaoSocial);
+	public Empresa(Documento documento, String razaoSocial, String nomeFantasia, String ocupacao) {
+		super(documento, razaoSocial, nomeFantasia);
 		this.ocupacao = ocupacao;
 	}
 
@@ -87,5 +88,4 @@ public class Empresa extends PessoaJuridica {
 				+ " " + "Vistoria:" + vistoria + "\n";
 	}
 
-	
 }

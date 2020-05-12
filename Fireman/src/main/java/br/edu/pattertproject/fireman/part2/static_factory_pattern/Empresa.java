@@ -1,8 +1,5 @@
 package br.edu.pattertproject.fireman.part2.static_factory_pattern;
 
-import br.edu.pattertproject.fireman.part1.entites.documents.Documento;
-import br.edu.pattertproject.fireman.part2.static_factory_pattern.PessoaJuridica;
-
 public class Empresa extends PessoaJuridica {
 
 	private String ocupacao;
@@ -25,6 +22,7 @@ public class Empresa extends PessoaJuridica {
 		super(razaoSocial, nomeFantasia);
 	}
 
+	
 	public String getOcupacao() {
 		return ocupacao;
 	}
@@ -35,11 +33,8 @@ public class Empresa extends PessoaJuridica {
 
 	@Override
 	public String toString() {
-		return "Empresa [ocupacao=" + ocupacao + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia
+		return "Empresa ["+"ocupacao=" + ocupacao + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia
 				+ "]";
 	}
 
-
-	
-	
 }

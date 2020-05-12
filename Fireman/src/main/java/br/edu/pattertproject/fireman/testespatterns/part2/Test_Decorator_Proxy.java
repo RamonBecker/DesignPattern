@@ -10,7 +10,7 @@ import br.edu.pattertproject.fireman.part1.entites.Empresa;
 import br.edu.pattertproject.fireman.part1.entites.documents.DocumentoCNPJ;
 import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.BancoMysql;
 import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.BancoPostGreSQL;
-import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.CacheMemory;
+import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.BancoMemoria;
 import br.edu.pattertproject.fireman.part2.proxy_decorator_pattern.EmpresaDaoDecorator;
 import br.edu.pattertproject.fireman.part2.proxy_decorator_pattern.InterfaceDao;
 
@@ -95,7 +95,8 @@ public class Test_Decorator_Proxy {
 		System.out.print("Digite a ocupação da empresa: ");
 		ocupacao = scanner.next().trim();
 
-		Empresa empresa = new Empresa(new DocumentoCNPJ(cnpj), nomeFantasia, razaoSocial, ocupacao);
+		Empresa empresa = new Empresa(new DocumentoCNPJ(cnpj), razaoSocial, nomeFantasia, ocupacao);
+				
 
 		proxy.add(empresa.getDocumento().getNumeroDocumento(), empresa);
 	}
@@ -112,8 +113,8 @@ public class Test_Decorator_Proxy {
 			listarDados(((BancoPostGreSQL) object).getListsEmpresas());
 		}
 
-		else if (object instanceof CacheMemory) {
-			listarDados(((CacheMemory) object).getListsEmpresas());
+		else if (object instanceof BancoMemoria) {
+			listarDados(((BancoMemoria) object).getListsEmpresas());
 		}
 	}
 
@@ -147,7 +148,7 @@ public class Test_Decorator_Proxy {
 		}
 
 		else if (op == 3) {
-			return CacheMemory.getInstance();
+			return BancoMemoria.getInstance();
 		}
 
 		throw new ErrorSelectedBanco("Erro ao selecionar o banco");

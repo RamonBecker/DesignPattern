@@ -31,8 +31,6 @@ public class EmpresaDaoProxy implements InterfaceDao {
 		this.interfaceDao = interfaceDao;
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "EmpresaDaoProxy [interfaceDao=" + interfaceDao + "]";

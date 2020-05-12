@@ -10,16 +10,16 @@ import br.edu.pattertproject.fireman.part1.observer_pattern.Ocorrencia;
 import br.edu.pattertproject.fireman.part1.observer_pattern.Viatura;
 import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.BancoMysql;
 import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.BancoPostGreSQL;
-import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.CacheMemory;
+import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.BancoMemoria;
 import br.edu.pattertproject.fireman.part2.chan_responsibility_pattern.RecuperarDado;
 
 public class TestChain_Responsibility {
 	private static RecuperarDado banco = null;
 	public static void main(String[] args) {
 
-		CacheMemory.getInstance().setRecuperador(BancoPostGreSQL.getInstance());
-		BancoPostGreSQL.getInstance().setRecuperador(BancoMysql.getInstance());
-		BancoMysql.getInstance().setRecuperador(null);
+		BancoMemoria.getInstance().setRecuperador(BancoMysql.getInstance());
+		BancoMysql.getInstance().setRecuperador(BancoPostGreSQL.getInstance());
+		BancoPostGreSQL.getInstance().setRecuperador(null);
 
 		try (Scanner scanner = new Scanner(System.in)) {
 			while (true) {
@@ -96,7 +96,7 @@ public class TestChain_Responsibility {
 		RecuperarDado banco = null;
 
 		if (opBD == 1) {
-			banco = CacheMemory.getInstance();
+			banco = BancoMemoria.getInstance();
 		}
 
 		else if (opBD == 2) {
@@ -164,9 +164,9 @@ public class TestChain_Responsibility {
 	private static <T> void addObjectBanco(RecuperarDado recuperarDado, T dado) {
 		banco = recuperarDado;
 
-		if (banco instanceof CacheMemory) {
+		if (banco instanceof BancoMemoria) {
 
-			CacheMemory cacheMemory = (CacheMemory) banco;
+			BancoMemoria cacheMemory = (BancoMemoria) banco;
 
 			if (dado instanceof Empresa) {
 				Empresa empresa = (Empresa) dado;
@@ -220,7 +220,7 @@ public class TestChain_Responsibility {
 				dado = scanner.next().trim();
 			}
 
-			RecuperarDado banco = CacheMemory.getInstance();
+			RecuperarDado banco = BancoMemoria.getInstance();
 			System.out.println("Dado buscado: " + banco.buscarDado(dado));
 
 		} catch (ErrorSearchDado e) {

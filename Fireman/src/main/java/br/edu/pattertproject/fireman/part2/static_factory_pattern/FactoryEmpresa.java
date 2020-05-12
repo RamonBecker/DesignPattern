@@ -2,20 +2,19 @@ package br.edu.pattertproject.fireman.part2.static_factory_pattern;
 
 import java.util.ArrayList;
 import java.util.List;
-import br.edu.pattertproject.fireman.part1.entites.documents.DocumentoCNPJ;
-import br.edu.pattertproject.fireman.part1.entites.documents.NullCNPJ;
+
 
 public class FactoryEmpresa {
 
-	private static List<String> palavras = new ArrayList<String>();;
+	private static List<String> palavras = new ArrayList<String>();
 
-	public static PessoaJuridica criaRazaoSocialNomeFantasia(String razaoSocial, String nomeFantasia) {
+	public static Empresa criaRazaoSocialNomeFantasia(String razaoSocial, String nomeFantasia) {
 		palavras.clear();
 
 		palavras.add(razaoSocial);
 		palavras.add(nomeFantasia);
 
-		PessoaJuridica pessoaJuridica = null;
+		Empresa pessoaJuridica = null;
 
 		try {
 			verificarVetor(palavras);
@@ -27,13 +26,13 @@ public class FactoryEmpresa {
 		return pessoaJuridica;
 	}
 
-	public static PessoaJuridica criaOcupacaoRazaoSocialNomeFantasia(String ocupacao, String razaoSocial,
+	public static Empresa criaOcupacaoRazaoSocialNomeFantasia(String ocupacao, String razaoSocial,
 			String nomeFantasia) {
 
 		palavras.add(ocupacao);
 		palavras.add(razaoSocial);
 		palavras.add(nomeFantasia);
-		PessoaJuridica empresa = null;
+		Empresa empresa = null;
 
 		try {
 			verificarVetor(palavras);
@@ -48,7 +47,7 @@ public class FactoryEmpresa {
 		return empresa;
 	}
 
-	public static PessoaJuridica criarDocumento(DocumentoCNPJ documentoCNPJ, String razaoSocial, String nomeFantasia,
+	public static Empresa criarDocumento(DocumentoCNPJ documentoCNPJ, String razaoSocial, String nomeFantasia,
 			String ocupacao) throws Exception {
 		palavras.clear();
 		palavras.add(razaoSocial);
@@ -61,25 +60,23 @@ public class FactoryEmpresa {
 
 			verificarVetor(palavras);
 
-			if (!(documentoCNPJ instanceof NullCNPJ)) {
+			if (!(documentoCNPJ == null)) {
 
-				PessoaJuridica empresa = new Empresa(documentoCNPJ, razaoSocial, nomeFantasia, ocupacao);
+				return new Empresa(documentoCNPJ, razaoSocial, nomeFantasia, ocupacao);
 
-				return empresa;
-			} else {
-				exception = new IllegalArgumentException("CNPJ inválido");
-
-			}
-
+				
+			} 
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			System.out.println(e.getMessage());
+			exception = e;
+			//e.printStackTrace();
 		}
 
 		throw new Exception(exception);
 
 	}
 
-	public static PessoaJuridica criarOcupacao(String ocupacao) {
+	public static Empresa criarOcupacao(String ocupacao) {
 		palavras.clear();
 		palavras.add(ocupacao);
 

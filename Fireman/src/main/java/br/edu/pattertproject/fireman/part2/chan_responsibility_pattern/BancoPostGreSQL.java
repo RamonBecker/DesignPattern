@@ -3,7 +3,6 @@ package br.edu.pattertproject.fireman.part2.chan_responsibility_pattern;
 import java.util.HashMap;
 import java.util.Map;
 import br.edu.pattertproject.fireman.part1.entites.Empresa;
-import br.edu.pattertproject.fireman.part1.observer_pattern.Viatura;
 import br.edu.pattertproject.fireman.part2.proxy_decorator_pattern.InterfaceDao;
 
 public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
@@ -57,9 +56,6 @@ public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 			listsEmpresas.put((String) key, (Empresa) value);
 		}
 
-		if (value instanceof Viatura) {
-			listsViaturas.put((String) key, (Viatura) value);
-		}
 	}
 
 	@Override
@@ -71,11 +67,6 @@ public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 			}
 		}
 
-		if (value instanceof Viatura) {
-			if (listsViaturas.containsKey(key)) {
-				return listsViaturas.get(key);
-			}
-		}
 
 		return null;
 	}
@@ -86,12 +77,6 @@ public class BancoPostGreSQL extends RecuperarDado implements InterfaceDao {
 		if (value instanceof Empresa) {
 			if (listsEmpresas.containsKey(key)) {
 				return listsEmpresas.remove(key);
-			}
-		}
-
-		if (value instanceof Viatura) {
-			if (listsViaturas.containsKey(key)) {
-				return listsViaturas.remove(key);
 			}
 		}
 

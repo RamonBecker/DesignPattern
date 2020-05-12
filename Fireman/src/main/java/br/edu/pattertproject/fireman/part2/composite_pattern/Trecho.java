@@ -5,7 +5,7 @@ import br.edu.pattertproject.fireman.part1.entites.person.Endereco;
 public class Trecho implements ITrecho {
 	private Endereco origem;
 	private Endereco destino;
-	private double trajeto;
+	private double distancia;
 
 	public Trecho(Endereco origem, Endereco destino) {
 		this.origem = origem;
@@ -24,16 +24,16 @@ public class Trecho implements ITrecho {
 
 	@Override
 	public void setDistancia(double distancia) {
-		this.trajeto = distancia;
+		this.distancia = distancia;
 	}
 
 	@Override
 	public double getDistancia() {
-		return this.trajeto;
+		return this.distancia;
 	}
 
 	@Override
 	public String toString() {
-		return "Trecho | {origem:" + origem + "}, {destino:" + destino + "} , {distancia:" + trajeto + "} \n";
+		return "Trecho | {origem:" + origem + "}, {destino:" + destino + "} , {distancia:" + distancia + "} \n";
 	}
 }
