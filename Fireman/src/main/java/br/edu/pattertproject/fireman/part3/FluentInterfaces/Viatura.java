@@ -17,8 +17,8 @@ public class Viatura {
 		return this;
 	}
 
-	public Viatura contem_o_fabricante(String marca) {
-		this.fabricante = verificarStringVaziaOuNula(marca);
+	public Viatura contem_o_fabricante(String fabricante) {
+		this.fabricante = verificarStringVaziaOuNula(fabricante);
 		return this;
 	}
 
