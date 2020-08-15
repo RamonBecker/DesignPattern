@@ -1,4 +1,4 @@
-package br.edu.pattertproject.fireman.part3.FluentInterfaces;
+package br.edu.pattertproject.fireman.part3.fluent_interfaces;
 
 import java.util.ArrayList;
 

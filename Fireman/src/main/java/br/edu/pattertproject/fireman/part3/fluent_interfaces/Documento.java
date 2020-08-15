@@ -1,4 +1,4 @@
-package br.edu.pattertproject.fireman.part3.FluentInterfaces;
+package br.edu.pattertproject.fireman.part3.fluent_interfaces;
 
 public abstract class Documento {
 	private String numero_documento;

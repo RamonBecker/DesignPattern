@@ -1,10 +1,10 @@
 package br.edu.pattertproject.fireman.testespatterns.part3;
 
-import br.edu.pattertproject.fireman.part3.FluentInterfaces.DocumentoCNPJ;
-import br.edu.pattertproject.fireman.part3.FluentInterfaces.Empresa;
-import br.edu.pattertproject.fireman.part3.FluentInterfaces.FactoryEmpresa;
-import br.edu.pattertproject.fireman.part3.FluentInterfaces.FactoryViatura;
-import br.edu.pattertproject.fireman.part3.FluentInterfaces.Viatura;
+import br.edu.pattertproject.fireman.part3.fluent_interfaces.DocumentoCNPJ;
+import br.edu.pattertproject.fireman.part3.fluent_interfaces.Empresa;
+import br.edu.pattertproject.fireman.part3.fluent_interfaces.FactoryEmpresa;
+import br.edu.pattertproject.fireman.part3.fluent_interfaces.FactoryViatura;
+import br.edu.pattertproject.fireman.part3.fluent_interfaces.Viatura;
 
 public class Test_Fluent_Interface {
 	public static void main(String[] args) {
