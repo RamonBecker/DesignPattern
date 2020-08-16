@@ -12,6 +12,7 @@ public class TrocarMarchaViatura implements Comando {
 	private Viatura viatura;
 	private TreeMap<Integer, Double> velocidades;
 	private Motor motor = new Motor();
+	private int marchaAtual;
 	private List<Double> velocidadesMarcha = new ArrayList<Double>();
 
 	{
@@ -25,11 +26,6 @@ public class TrocarMarchaViatura implements Comando {
 
 	@Override
 	public void executar() {
-		
-		
-		
-		
-		
 
 		int cont = 0;
 		for (Integer key : velocidades.keySet()) {
@@ -42,8 +38,6 @@ public class TrocarMarchaViatura implements Comando {
 		double marcharAtual = cont + 1;
 		double calcDivisao = velocidadeRecebida / marcharAtual;
 
-		ArrayList<Double> list1 = new ArrayList<Double>();
-
 		double aux_calc = 0;
 
 		for (int i = 0; i < marcharAtual; i++) {
@@ -51,27 +45,40 @@ public class TrocarMarchaViatura implements Comando {
 			velocidadesMarcha.add(aux_calc);
 		}
 
-		int marchaAtual = 1;
+		for (int i = 0; i < velocidadesMarcha.size(); i++) {
+			if (velocidadesMarcha.get(i) <= 5.0) {
+				addVelocidadeMotor(1, i);
+			}
+		}
+
+		if (motor.getVelocidades().containsKey(1)) {
+			List<Double> recuperar = motor.getVelocidades().get(1);
+			if (recuperar.isEmpty()) {
+				recuperar.add(0.0);
+				motor.getVelocidades().put(1, recuperar);
+			}
+		}
+
+		marchaAtual = 1;
 		double velocidadeLimite = 0;
 		int contKey = 1;
 
-		boolean teste = false;
+		boolean verificando_velocidade_limitese;
 		for (int i = 0; i < velocidadesMarcha.size(); i++) {
 			velocidadeLimite = velocidades.get(contKey);
 			if (velocidadesMarcha.get(i) > velocidadeLimite) {
 				marchaAtual++;
 				addVelocidadeMotor(marchaAtual, i);
 
-			} else if (velocidadesMarcha.get(i) < velocidadeLimite) {
+			} else if (velocidadesMarcha.get(i) <= velocidadeLimite) {
 
 				contKey--;
-				
+
 				if (velocidades.containsKey(contKey)) {
 					velocidadeLimite = velocidades.get(contKey);
 					if (velocidadesMarcha.get(i) > velocidadeLimite) {
 						contKey++;
-						teste = true;
-						velocidadeLimite = velocidades.get(contKey);
+						checkVverificando_velocidade_limite			velocidadeLimite = velocidades.get(contKey);
 						if (velocidadeLimite < velocidadesMarcha.get(i)) {
 							marchaAtual++;
 						}
@@ -79,20 +86,14 @@ public class TrocarMarchaViatura implements Comando {
 					}
 
 				}
-				if (teste) {
-					contKey--;
-					teste = false;
-
-				}
-			}
-			contKey++;
+				if (checkVelocidverificando_velocidade_limite;
+					checkVelocidadeLimverificando_velocidade_limite	contKey++;
 		}
 
 		System.out.println("------------");
 		System.out.println("Velocidade Atual:" + velocidadeRecebida);
 		System.out.println("Marcha atual:" + (cont + 1));
-
-		System.out.println("lista:" + list1);
+		marchaAtual = cont + 1;
 		System.out.println("lista do motor:" + motor.getVelocidades());
 
 	}
@@ -110,6 +111,10 @@ public class TrocarMarchaViatura implements Comando {
 
 	public void setViatura(Viatura viatura) {
 		this.viatura = viatura;
+	}
+
+	public int getMarchaAtual() {
+		return marchaAtual;
 	}
 
 }

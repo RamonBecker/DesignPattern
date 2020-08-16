@@ -3,14 +3,16 @@ package br.edu.pattertproject.fireman.part3.command;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
+import com.sun.source.tree.Tree;
 
 public class Motor {
-	private HashMap<Integer, List<Double>> velocidades;
+	private TreeMap<Integer, List<Double>> velocidades;
 
-	public HashMap<Integer, List<Double>> getVelocidades() {
+	public TreeMap<Integer, List<Double>> getVelocidades() {
 		if (velocidades == null) {
-			velocidades = new HashMap<Integer, List<Double>>();
+			velocidades = new TreeMap<Integer, List<Double>>();
 			velocidades.put(1, new ArrayList<>());
 			velocidades.put(2, new ArrayList<>());
 			velocidades.put(3, new ArrayList<>());
