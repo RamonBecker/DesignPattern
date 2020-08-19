@@ -1,7 +1,7 @@
 package br.edu.pattertproject.fireman.part3.doubledispatch;
 
 public class Atendimento_Pre_Hospitalar extends Ocorrencia {
-	private String sintomas;
+	private Sintomas sintomas;
 	private Complexidade_Ocorrencia complexidade_Ocorrencia;
 	private TipoAtendimentoPreHospitalarMovel tipoAtendimentoPreHospitalar;
 
@@ -9,11 +9,11 @@ public class Atendimento_Pre_Hospitalar extends Ocorrencia {
 		super(endereco);
 	}
 
-	public String getSintomas() {
+	public Sintomas getSintomas() {
 		return sintomas;
 	}
 
-	public void setSintomas(String sintomas) {
+	public void setSintomas(Sintomas sintomas) {
 		this.sintomas = sintomas;
 	}
 
