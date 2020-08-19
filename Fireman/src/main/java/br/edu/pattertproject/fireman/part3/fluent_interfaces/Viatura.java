@@ -2,6 +2,9 @@ package br.edu.pattertproject.fireman.part3.fluent_interfaces;
 
 import java.util.TreeMap;
 
+import br.edu.pattertproject.fireman.part3.command.Comando;
+import br.edu.pattertproject.fireman.part3.command.Motor;
+
 public class Viatura {
 	private String placa;
 	private String modelo;
@@ -10,6 +13,7 @@ public class Viatura {
 	private String combustivel;
 	private double velocidade;
 	private TreeMap<Integer, Integer> marcha;
+	private Motor motor;
 
 	public Viatura contem_identificacao_de_Placa(String placa) {
 		if (placa.isEmpty() || placa == null) {
@@ -56,11 +60,23 @@ public class Viatura {
 		return this;
 	}
 
+	public Viatura possuiMotor(Motor motor) {
+		if (motor == null) {
+			throw new IllegalArgumentException("O motor não pode ser nulo");
+		}
+		this.motor = motor;
+		return this;
+	}
+
 	public TreeMap<Integer, Integer> getMarcha() {
 		if (this.marcha == null) {
 			this.marcha = new TreeMap<>();
 		}
 		return marcha;
+	}
+
+	public void executar_Motor(Comando comando) { 
+		motor.executar(comando);
 	}
 
 	public String getPlaca() {
@@ -85,6 +101,10 @@ public class Viatura {
 
 	public double getVelocidade() {
 		return velocidade;
+	}
+
+	public Motor getMotor() {
+		return motor;
 	}
 
 	@Override

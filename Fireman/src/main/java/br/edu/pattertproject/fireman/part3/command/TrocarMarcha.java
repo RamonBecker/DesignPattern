@@ -3,12 +3,10 @@ package br.edu.pattertproject.fireman.part3.command;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.pattertproject.fireman.part3.fluent_interfaces.Viatura;
 
-public class TrocarMarchaViatura implements Comando {
+public class TrocarMarcha implements Comando {
 
 	public static Integer velocidadeRecebida;
-	private Viatura viatura;
 	private Motor motor;
 	private int incrementado_proxima_marcha;
 	private List<Integer> velocidadesMarcha = new ArrayList<Integer>();
@@ -17,8 +15,7 @@ public class TrocarMarchaViatura implements Comando {
 
 	@Override
 	public void executar() {
-		motor = Motor.getInstance();
-		
+
 		motor.getVelocidades().forEach((k, v) -> {
 			if (v.isEmpty()) {
 				verificarListasVazias++;
@@ -96,8 +93,12 @@ public class TrocarMarchaViatura implements Comando {
 			verificarListasVazias = 0;
 			velocidadesMarcha.clear();
 		}
+		
+		
 		System.out.println("------------");
-		System.out.println("lista do motor:" + motor.getVelocidades());
+		motor.getVelocidades().forEach((k, v) -> {
+			System.out.println("Marcha:"+k+" Velocidade: "+v);
+		});
 
 	}
 
@@ -108,13 +109,7 @@ public class TrocarMarchaViatura implements Comando {
 		motor.getVelocidades().put(marchaAtual, list);
 	}
 
-	public Viatura getViatura() {
-		return viatura;
-	}
 
-	public void setViatura(Viatura viatura) {
-		this.viatura = viatura;
-	}
 
 	public int getMarchaAtual() {
 		return incrementado_proxima_marcha;
@@ -125,6 +120,9 @@ public class TrocarMarchaViatura implements Comando {
 	}
 
 	public void setMotor(Motor motor) {
+		if (motor == null) {
+			throw new IllegalArgumentException("O motor não pode ser nulo");
+		}
 		this.motor = motor;
 	}
 

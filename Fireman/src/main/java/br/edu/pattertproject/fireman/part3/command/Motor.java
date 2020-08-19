@@ -8,14 +8,6 @@ public class Motor {
 	private TreeMap<Integer, List<Integer>> velocidades;
 	private int marchaAtual;
 	private TreeMap<Integer, Integer> velocidadesLimite;
-	private static Motor motor;
-
-	public static Motor getInstance() {
-		if (motor == null) {
-			motor = new Motor();
-		}
-		return motor;
-	}
 
 	public void executar(Comando comando) {
 		comando.executar();
