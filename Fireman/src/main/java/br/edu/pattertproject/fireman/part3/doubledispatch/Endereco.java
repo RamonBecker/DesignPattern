@@ -51,4 +51,8 @@ public class Endereco {
 		this.numero = numero;
 	}
 
+	@Override
+	public String toString() {
+		return "Endereco [rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", numero=" + numero + "]";
+	}
 }
