@@ -1,11 +1,28 @@
 package br.edu.pattertproject.fireman.part3.facade.model;
 
+import java.util.Map;
+import br.edu.pattertproject.fireman.part3.facade.CamposUsuario;
+import br.edu.pattertproject.fireman.part3.facade.model.usuario.Usuario;
+
 public class UsuarioDao implements IDao {
 
 	@Override
-	public void add() {
-		// TODO Auto-generated method stub
+	public void add(Map<Enum, Object> lista, Object object) throws Exception {
 
+		Usuario usuario = null;
+
+		if (object instanceof Usuario) {
+			usuario = (Usuario) object;
+			String identificador = (String) lista.get(CamposUsuario.IDENTIFICADOR);
+			String senha = (String) lista.get(CamposUsuario.SENHA);
+
+			usuario.setIdentificador(identificador);
+			usuario.setSenha(senha);
+			System.out.println("Usuário cadastrado com sucesso !");
+			return;
+		}
+
+		throw new Exception("Não foi possível cadastrar o usuário");
 	}
 
 	@Override

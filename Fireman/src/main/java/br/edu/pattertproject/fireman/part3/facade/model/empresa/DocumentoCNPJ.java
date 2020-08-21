@@ -1,16 +1,16 @@
-package br.edu.pattertproject.fireman.part3.facade.model;
+package br.edu.pattertproject.fireman.part3.facade.model.empresa;
 
 import java.util.ArrayList;
 
-public class DocumentoCNPJ extends Documento{
+public class DocumentoCNPJ extends Documento {
 	public DocumentoCNPJ() {
 		super();
 	}
-	
 
 	public DocumentoCNPJ(String documento) {
 		super(documento);
 		validarDocumento();
+
 	}
 
 	@Override
@@ -24,12 +24,12 @@ public class DocumentoCNPJ extends Documento{
 
 			if (getNumeroDocumento().length() != 14) {
 				setDocumento(null);
-				return new NullCNPJ();
+				throw new IllegalArgumentException("CNPJ Invalido");
 			}
 
 			if (getNumeroDocumento().matches("(\\d)\\1+")) {
 				setDocumento(null);
-				return new NullCNPJ();
+				throw new IllegalArgumentException("CNPJ Invalido");
 			}
 
 			int primeiroDigito = 0, segundoDigito = 0, indiceAuxiliar = 1;
@@ -97,7 +97,7 @@ public class DocumentoCNPJ extends Documento{
 		}
 
 		setDocumento(null);
-		return new NullCNPJ();
+		throw new IllegalArgumentException("CNPJ Invalido");
 	}
 
 }

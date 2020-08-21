@@ -5,14 +5,16 @@ import br.edu.pattertproject.fireman.part1.entites.documents.Documento;
 public class PessoaJuridica extends Pessoa {
 	private String razaoSocial;
 	private String nomeFantasia;
-	
+
 	public PessoaJuridica() {
 	}
-	
-	
-	
+
 	public PessoaJuridica(Documento documento, String razaoSocial, String nomeFantasia) {
 		super(documento);
+		if (nomeFantasia.isEmpty() || nomeFantasia == null) {
+			throw new IllegalArgumentException("O nome fantasia não pode ser vazio");
+
+		}
 		this.razaoSocial = razaoSocial;
 		this.nomeFantasia = nomeFantasia;
 	}

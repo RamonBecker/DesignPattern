@@ -1,28 +1,18 @@
-package br.edu.pattertproject.fireman.part2.static_factory_pattern;
+package br.edu.pattertproject.fireman.part3.facade.model.empresa;
 
 public class Empresa extends PessoaJuridica {
-
 	private String ocupacao;
 
 	public Empresa() {
-		super();
-	}
 
-	public Empresa(String ocupacao) {
-		super();
-		this.ocupacao = ocupacao;
 	}
 
 	public Empresa(Documento documento, String razaoSocial, String nomeFantasia, String ocupacao) {
 		super(documento, razaoSocial, nomeFantasia);
 		if (ocupacao.isEmpty() || ocupacao == null) {
-			throw new IllegalArgumentException("A ocupação não pode ser vazio");
+			throw new IllegalArgumentException("A ocupação não pode ser vazia");
 		}
 		this.ocupacao = ocupacao;
-	}
-
-	public Empresa(String razaoSocial, String nomeFantasia) {
-		super(razaoSocial, nomeFantasia);
 	}
 
 	public String getOcupacao() {
@@ -31,15 +21,14 @@ public class Empresa extends PessoaJuridica {
 
 	public void setOcupacao(String ocupacao) {
 		if (ocupacao.isEmpty() || ocupacao == null) {
-			throw new IllegalArgumentException("A ocupação não pode ser vazio");
+			throw new IllegalArgumentException("A ocupação não pode ser vazia");
 		}
 		this.ocupacao = ocupacao;
 	}
 
 	@Override
 	public String toString() {
-		return "Empresa [ocupacao=" + ocupacao + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia
-				+ "]";
+		return "Empresa [ocupacao=" + ocupacao + "]";
 	}
 
 }

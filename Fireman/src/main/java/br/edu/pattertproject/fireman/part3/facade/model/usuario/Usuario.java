@@ -1,4 +1,4 @@
-package br.edu.pattertproject.fireman.part3.facade.model;
+package br.edu.pattertproject.fireman.part3.facade.model.usuario;
 
 public class Usuario {
 	private String identificador;
@@ -38,6 +38,11 @@ public class Usuario {
 		}
 
 		this.senha = senha;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [identificador=" + identificador + ", senha=" + senha + "]";
 	}
 
 }
