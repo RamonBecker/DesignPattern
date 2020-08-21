@@ -3,7 +3,6 @@ package br.edu.pattertproject.fireman.part3.doubledispatch;
 public class Atendimento_Pre_Hospitalar extends Ocorrencia {
 
 	private Sintomas sintomas;
-	private TipoAtendimentoPreHospitalarMovel tipoAtendimentoPreHospitalar;
 
 	public Atendimento_Pre_Hospitalar(Endereco endereco) {
 		super(endereco);
@@ -19,20 +18,5 @@ public class Atendimento_Pre_Hospitalar extends Ocorrencia {
 		}
 		this.sintomas = sintomas;
 	}
-
-	public TipoAtendimentoPreHospitalarMovel getTipoAtendimentoPreHospitalar() {
-		if (tipoAtendimentoPreHospitalar == null) {
-			throw new IllegalArgumentException("O tipo de atendimento está vazio");
-		}
-		return tipoAtendimentoPreHospitalar;
-	}
-
-	public void setTipoAtendimentoPreHospitalar(TipoAtendimentoPreHospitalarMovel tipoAtendimentoPreHospitalar) {
-		if (tipoAtendimentoPreHospitalar == null) {
-			throw new IllegalArgumentException("O tipo de atendimento não pode vazio");
-		}
-		this.tipoAtendimentoPreHospitalar = tipoAtendimentoPreHospitalar;
-	}
-
 
 }
