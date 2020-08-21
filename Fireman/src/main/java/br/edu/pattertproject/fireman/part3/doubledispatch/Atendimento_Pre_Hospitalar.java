@@ -34,10 +34,5 @@ public class Atendimento_Pre_Hospitalar extends Ocorrencia {
 		this.tipoAtendimentoPreHospitalar = tipoAtendimentoPreHospitalar;
 	}
 
-	@Override
-	public void addPropriedades(RelatorioOcorrencia relatorioOcorrencia) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
