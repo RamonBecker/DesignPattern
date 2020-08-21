@@ -2,11 +2,9 @@ package br.edu.pattertproject.fireman.part3.doubledispatch;
 
 import java.util.TreeMap;
 
-import com.sun.javafx.image.impl.ByteIndexed.Getter;
-
 public class RelatorioOcorrencia {
 
-	private TreeMap<TipoOcorrencia, Equipamento> lista_de_custo_Equipamento;
+	private TreeMap<TipoOcorrencia, Double> lista_de_custo_Equipamento;
 	private TreeMap<TipoOcorrencia, TreeMap<String, Equipamento>> lista;
 
 	public RelatorioOcorrencia() {
@@ -35,16 +33,27 @@ public class RelatorioOcorrencia {
 
 	}
 
-	public TreeMap<TipoOcorrencia, Equipamento> getLista_de_custo_Equipamento() {
+	public void getTotalGastos() {
+
+		Double valor = 0.0;
+		for (TipoOcorrencia tipoOcorrencia : TipoOcorrencia.values()) {
+			for (String modelo : getLista().get(tipoOcorrencia).keySet()) {
+				Equipamento auxEquipamento = getLista().get(tipoOcorrencia).get(modelo);
+				valor += auxEquipamento.getCusto() * auxEquipamento.getQuantidade();
+				getLista_de_custo_Equipamento().put(tipoOcorrencia, valor);
+			}
+		}
+	}
+
+	public TreeMap<TipoOcorrencia, Double> getLista_de_custo_Equipamento() {
 		if (lista_de_custo_Equipamento == null) {
-			lista_de_custo_Equipamento = new TreeMap<TipoOcorrencia, Equipamento>();
+			lista_de_custo_Equipamento = new TreeMap<TipoOcorrencia, Double>();
+			for (TipoOcorrencia tipoOcorrencia : TipoOcorrencia.values()) {
+				lista_de_custo_Equipamento.put(tipoOcorrencia, 0.0);
+			}
 
 		}
 		return lista_de_custo_Equipamento;
-	}
-
-	public void setLista_de_custo_Equipamento(TreeMap<TipoOcorrencia, Equipamento> lista_de_custo_Equipamento) {
-		this.lista_de_custo_Equipamento = lista_de_custo_Equipamento;
 	}
 
 	public TreeMap<TipoOcorrencia, TreeMap<String, Equipamento>> getLista() {

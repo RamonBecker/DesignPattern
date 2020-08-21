@@ -34,7 +34,8 @@ public class PranchaResgate extends Equipamento {
 
 	@Override
 	public String toString() {
-		return "PranchaResgate [peso=" + peso + "]";
+		return "PranchaResgate [peso=" + peso + ", getPeso()=" + getPeso() + ", getCusto()=" + getCusto()
+				+ ", getModelo()=" + getModelo() + ", getQuantidade()=" + getQuantidade() + "]";
 	}
 
 }
