@@ -1,9 +1,9 @@
-package br.edu.pattertproject.fireman.part3.facade.model;
+package br.edu.pattertproject.fireman.part3.facade.dao;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import br.edu.pattertproject.fireman.part3.facade.CamposEmpresa;
+import br.edu.pattertproject.fireman.part3.facade.control.CamposEmpresa;
 import br.edu.pattertproject.fireman.part3.facade.model.empresa.Documento;
 import br.edu.pattertproject.fireman.part3.facade.model.empresa.Empresa;
 
@@ -25,7 +25,6 @@ public class EmpresaDao implements IDao {
 			empresa.setRazaoSocial(razaoSocial);
 			empresa.setOcupacao(ocupacao);
 			System.out.println("Empresa cadastrada com sucesso !");
-			System.out.println(empresa);
 			getListaEmpresa().put(empresa.getDocumento().getNumeroDocumento(), empresa);
 			return;
 		}
@@ -55,7 +54,7 @@ public class EmpresaDao implements IDao {
 		throw new Exception("Essa empresa não existe!");
 	}
 
-	public Map<String, Empresa> getListaEmpresa() {
+	private Map<String, Empresa> getListaEmpresa() {
 		if (this.listaEmpresa == null) {
 			listaEmpresa = new HashMap<String, Empresa>();
 		}

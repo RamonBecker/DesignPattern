@@ -1,4 +1,4 @@
-package br.edu.pattertproject.fireman.part3.facade;
+package br.edu.pattertproject.fireman.part3.facade.control;
 
 public enum CamposEmpresa {
 	DOCUMENTO("Documento"), RAZAO_SOCIAL("RazaoSocial"), NOME_FANTASIA("NomeFantasia"), OCUPACAO("Ocupacao");

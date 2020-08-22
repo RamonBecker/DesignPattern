@@ -4,6 +4,9 @@ public class Usuario {
 	private String identificador;
 	private String senha;
 
+	public Usuario() {
+	}
+	
 	public Usuario(String identificador, String senha) {
 		if (identificador.isEmpty() || identificador == null) {
 			throw new IllegalArgumentException("O identificador não pode ser vazio !");

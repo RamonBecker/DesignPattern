@@ -1,9 +1,10 @@
-package br.edu.pattertproject.fireman.part3.facade;
+package br.edu.pattertproject.fireman.part3.facade.control;
 
 public enum CamposUsuario {
 	IDENTIFICADOR("Identificador"), 
-	SENHA("Senha");
-
+	SENHA("Senha"),
+	SENHANOVAMENTE("SenhaNovamente");
+	
 	private String descricao;
 
 	private CamposUsuario(String descricao) {

@@ -1,4 +1,4 @@
-package br.edu.pattertproject.fireman.part3.facade.model;
+package br.edu.pattertproject.fireman.part3.facade.dao;
 
 import java.util.Map;
 
