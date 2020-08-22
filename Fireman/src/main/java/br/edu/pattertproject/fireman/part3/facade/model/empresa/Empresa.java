@@ -28,7 +28,10 @@ public class Empresa extends PessoaJuridica {
 
 	@Override
 	public String toString() {
-		return "Empresa [ocupacao=" + ocupacao + "]";
+		return "Empresa [ocupacao=" + ocupacao + ", RazaoSocial=" + getRazaoSocial() + ", NomeFantasia="
+				+ getNomeFantasia() + ", DocumentoCNPJ=" + getDocumento() + "]";
 	}
 
+
+	
 }

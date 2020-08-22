@@ -7,7 +7,7 @@ public interface IDao {
 	public void add(Map<Object,  Object> lista, Object object) throws Exception;
 	
 
-	public void buscar();
+	public Object buscar(Object key)  throws Exception;
 
 	public void listar();
 }
