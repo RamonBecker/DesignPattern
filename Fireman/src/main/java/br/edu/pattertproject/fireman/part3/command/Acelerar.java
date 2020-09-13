@@ -12,7 +12,7 @@ public class Acelerar implements Comando {
 
 		Integer velocidade_gerada = gerarVelocidade.nextInt(valor_para_gerar_velocidade);
 		if (velocidade_gerada == 0) {
-			velocidade_gerada = 1;
+			velocidade_gerada = 10;
 		}
 		TrocarMarcha.velocidadeRecebida = velocidade_gerada;
 	}

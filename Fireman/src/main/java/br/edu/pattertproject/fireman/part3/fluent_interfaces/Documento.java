@@ -6,16 +6,14 @@ public abstract class Documento {
 	public Documento() {
 	}
 
-	public Documento(String documento) {
-		this.numero_documento = documento;
+	public Documento possui_Numero_Documeto(String n_Documento) {
+		this.numero_documento = n_Documento;
+		return this;
 	}
+
 
 	public String getNumeroDocumento() {
 		return numero_documento;
-	}
-
-	public void setDocumento(String documento) {
-		this.numero_documento = documento;
 	}
 
 	public abstract Documento validarDocumento();

@@ -14,7 +14,7 @@ public class Invoker {
 		viatura.executar_Motor(trocarMarchaViatura);
 	}
 
-	public void executa_acelerar(Acelerar acelerar) {
+	public void executar_acelerar(Acelerar acelerar) {
 		if (acelerar == null) {
 			throw new IllegalArgumentException("O acelerar não pode ser nula");
 
@@ -22,7 +22,7 @@ public class Invoker {
 		viatura.executar_Motor(acelerar);
 	}
 
-	public void executa_Freiar(Freiar freiar) {
+	public void executar_Freiar(Freiar freiar) {
 		if (freiar == null) {
 			throw new IllegalArgumentException("O freiar não pode ser nulo");
 

@@ -3,7 +3,6 @@ package br.edu.pattertproject.fireman.part3.command;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TrocarMarcha implements Comando {
 
 	public static Integer velocidadeRecebida;
@@ -93,11 +92,10 @@ public class TrocarMarcha implements Comando {
 			verificarListasVazias = 0;
 			velocidadesMarcha.clear();
 		}
-		
-		
+
 		System.out.println("------------");
 		motor.getVelocidades().forEach((k, v) -> {
-			System.out.println("Marcha:"+k+" Velocidade: "+v);
+			System.out.println("Marcha:" + k + " Velocidade: " + v);
 		});
 
 	}
@@ -108,8 +106,6 @@ public class TrocarMarcha implements Comando {
 		list.add(velocidadesMarcha.get(posicao));
 		motor.getVelocidades().put(marchaAtual, list);
 	}
-
-
 
 	public int getMarchaAtual() {
 		return incrementado_proxima_marcha;

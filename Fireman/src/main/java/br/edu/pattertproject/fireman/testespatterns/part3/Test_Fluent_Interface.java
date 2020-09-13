@@ -29,16 +29,15 @@ public class Test_Fluent_Interface {
 		System.out.println(viatura4);
 		System.out.println(viatura5);
 
-		
-		
 		System.out.println("------------------------\n");
-		
-		DocumentoCNPJ documentoCNPJ = new DocumentoCNPJ("23345873000131");
+
+		DocumentoCNPJ documentoCNPJ = (DocumentoCNPJ) new DocumentoCNPJ().possui_Numero_Documeto("23345873000131");
+		documentoCNPJ.validarDocumento();
 		Empresa empresa1 = new Empresa().possuiCNPJ(documentoCNPJ);
 
 		Empresa empresa2 = FactoryEmpresa.criarCNPJ("23345873000131");
 
-		Empresa empresa3 = new Empresa().temNomeFantasia("Ola");
+		Empresa empresa3 = new Empresa().temNomeFantasia("Nome Fantasia");
 
 		Empresa empresa4 = new Empresa().contemRazaoSocial("RazaoSocial");
 
@@ -46,7 +45,7 @@ public class Test_Fluent_Interface {
 
 		Empresa empresa6 = new Empresa().possuiCNPJ(documentoCNPJ).contemRazaoSocial("Teste razao social")
 				.temNomeFantasia("Nome fantansia").apresentaAtividades("Comercial, venda de roupas");
-		
+
 		System.out.println(empresa1);
 		System.out.println(empresa2);
 		System.out.println(empresa3);

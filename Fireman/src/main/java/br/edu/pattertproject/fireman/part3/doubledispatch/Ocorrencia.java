@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Ocorrencia {
+public abstract class Ocorrencia {
 	private Endereco endereco;
 	private List<Equipamento> lista_equipamentos;
 	

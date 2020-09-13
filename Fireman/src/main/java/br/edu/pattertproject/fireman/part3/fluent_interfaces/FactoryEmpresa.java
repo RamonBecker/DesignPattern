@@ -8,7 +8,8 @@ public class FactoryEmpresa {
 	}
 
 	public static Empresa criarCNPJ(String cnpj) {
-		DocumentoCNPJ documento = new DocumentoCNPJ(cnpj);
+		DocumentoCNPJ documento = (DocumentoCNPJ) new DocumentoCNPJ().possui_Numero_Documeto(cnpj);
+		documento.validarDocumento();											
 		Empresa empresa = new Empresa().possuiCNPJ(documento);
 		return empresa;
 	}
@@ -25,7 +26,8 @@ public class FactoryEmpresa {
 
 	public static Empresa criar_CNPJ_RazaoSocial_NomeFantansia_Atividades(String cnpj, String razaoSocial,
 			String nomeFantasia, String atividades) {
-		DocumentoCNPJ documento = new DocumentoCNPJ(cnpj);
+		DocumentoCNPJ documento = (DocumentoCNPJ) new DocumentoCNPJ().possui_Numero_Documeto(cnpj);
+		documento.validarDocumento();	
 		Empresa empresa = new Empresa().possuiCNPJ(documento).contemRazaoSocial(razaoSocial)
 				.temNomeFantasia(nomeFantasia).apresentaAtividades(atividades);
 		return empresa;

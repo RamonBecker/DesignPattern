@@ -2,15 +2,16 @@ package br.edu.pattertproject.fireman.part3.fluent_interfaces;
 
 import java.util.ArrayList;
 
-public class DocumentoCNPJ extends Documento{
+public class DocumentoCNPJ extends Documento {
 	public DocumentoCNPJ() {
 		super();
 	}
-	
 
-	public DocumentoCNPJ(String documento) {
-		super(documento);
-		validarDocumento();
+	@Override
+	public Documento possui_Numero_Documeto(String n_Documento) {
+
+		return super.possui_Numero_Documeto(n_Documento);
+
 	}
 
 	@Override
@@ -90,7 +91,7 @@ public class DocumentoCNPJ extends Documento{
 		}
 
 		if (verificaDocumento) {
-			setDocumento(getNumeroDocumento());
+			possui_Numero_Documeto((getNumeroDocumento()));
 			return this;
 		}
 

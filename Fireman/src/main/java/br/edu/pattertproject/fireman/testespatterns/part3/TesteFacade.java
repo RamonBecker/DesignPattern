@@ -13,7 +13,7 @@ public class TesteFacade {
 		Documento doc = new DocumentoCNPJ("87051293000114");
 		empresa.add(doc, "Nome fantasiaa", "Razao Social", "Ocupação");
 
-		empresa.buscar("8705129300011");
+		empresa.buscar("87051293000114");
 		empresa.listar();
 
 		

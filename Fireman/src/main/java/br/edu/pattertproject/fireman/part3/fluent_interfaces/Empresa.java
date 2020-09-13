@@ -6,6 +6,7 @@ public class Empresa {
 	private String razaoSocial;
 	private String atividades;
 
+
 	public Empresa possuiCNPJ(Documento documentoCNPJ) {
 		this.documentoCNPJ = documentoCNPJ;
 		return this;

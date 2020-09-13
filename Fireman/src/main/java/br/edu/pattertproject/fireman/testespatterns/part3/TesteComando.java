@@ -15,9 +15,9 @@ public class TesteComando {
 		
 		Invoker invoker = new Invoker();
 		invoker.setViatura(viatura);
-		invoker.executa_acelerar(new Acelerar());
+		invoker.executar_acelerar(new Acelerar());
 		invoker.executa_Trocar_Marcha(new TrocarMarcha());
-		invoker.executa_Freiar(new Freiar());
+		invoker.executar_Freiar(new Freiar());
 
 	}
 

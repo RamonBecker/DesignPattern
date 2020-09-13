@@ -5,7 +5,7 @@ import java.util.TreeMap;
 public class RelatorioOcorrencia {
 
 	private TreeMap<TipoOcorrencia, Double> lista_de_custo_Equipamento;
-	private TreeMap<TipoOcorrencia, TreeMap<String, Equipamento>> lista;
+	private TreeMap<TipoOcorrencia, TreeMap<String, Equipamento>> lista_de_equipamento;
 
 	public RelatorioOcorrencia() {
 		getLista();
@@ -28,7 +28,7 @@ public class RelatorioOcorrencia {
 			Integer quantidade = auxEquipamento.getQuantidade() + equipamento.getQuantidade();
 			auxEquipamento.setCusto(custo);
 			auxEquipamento.setQuantidade(quantidade);
-			lista.get(tipoOcorrencia).put(equipamento.getModelo(), auxEquipamento);
+			lista_de_equipamento.get(tipoOcorrencia).put(equipamento.getModelo(), auxEquipamento);
 		}
 
 	}
@@ -57,13 +57,13 @@ public class RelatorioOcorrencia {
 	}
 
 	public TreeMap<TipoOcorrencia, TreeMap<String, Equipamento>> getLista() {
-		if (lista == null) {
-			lista = new TreeMap<TipoOcorrencia, TreeMap<String, Equipamento>>();
+		if (lista_de_equipamento == null) {
+			lista_de_equipamento = new TreeMap<TipoOcorrencia, TreeMap<String, Equipamento>>();
 			for (TipoOcorrencia tipoOcorrencia : TipoOcorrencia.values()) {
-				lista.put(tipoOcorrencia, new TreeMap<String, Equipamento>());
+				lista_de_equipamento.put(tipoOcorrencia, new TreeMap<String, Equipamento>());
 			}
 		}
-		return lista;
+		return lista_de_equipamento;
 	}
 
 }
