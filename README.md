@@ -35,14 +35,14 @@ The theme of the project was a simulation of a fire brigade system for inspectin
 ![](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
 ```sh
-git clonehttps://github.com/RamonBecker/DesignPattern.git
+git clone https://github.com/RamonBecker/FiremanDesignPattern.git
 ```
 
 ![](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
 
 ```sh
-git clone https://github.com/RamonBecker/DesignPattern.git
+git clone https://github.com/RamonBecker/FiremanDesignPattern.git
 or install github https://desktop.github.com/ 
 
 ```
